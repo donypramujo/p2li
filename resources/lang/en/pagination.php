@@ -15,5 +15,9 @@ return [
 
     'previous' => '&laquo; Previous',
     'next'     => 'Next &raquo;',
+	'some_items_found' =>':total items found, displaying :start to :end.',
+	'no_items_found' => 'No items found.' ,
+	'one_item_found' => 'One item found.',
+	'all_items_found' => ':total items found, displaying all.'
 
 ];

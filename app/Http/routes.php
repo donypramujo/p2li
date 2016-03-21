@@ -30,13 +30,20 @@ Route::group(['middleware' => ['web']], function () {
     //
 });
 
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+Route::group(['middleware' => 'web','prefix' => 'backend'], function () {
+   Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+   Route::get('/', 'BackendController@index');
     
-    
-    Route::get('/test',['middleware'=>'can:test',function(){
-    	return 'test';
-    }]);
+   Route::group(['prefix' => 'team'], function () {
+    	Route::get('/',['as' =>'team.index','middleware'=>'can:team.index' ,'uses' => 'TeamController@index']);
+    	Route::get('create',['as' =>'team.create','middleware'=>'can:team.create' ,'uses' => 'TeamController@create']);
+    	Route::post('store',['as' =>'team.store','middleware'=>'can:team.store' ,'uses' => 'TeamController@store']);
+    	Route::get('{team}',['as' =>'team.show','middleware'=>'can:team.show' ,'uses' => 'TeamController@show']);
+    	Route::get('{team}/edit',['as' =>'team.edit','middleware'=>'can:team.edit' ,'uses' => 'TeamController@edit']);
+    	Route::put('{team}',['as' =>'team.update','middleware'=>'can:team.update' ,'uses' => 'TeamController@update']);
+    	Route::delete('{team}',['as' =>'team.destroy','middleware'=>'can:team.destroy' ,'uses' => 'TeamController@destroy']);
+   });
+   
+   
 });
