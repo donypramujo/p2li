@@ -8,37 +8,37 @@ return [
     'columns' => [
         'alpha'    => [
             'rows' => ['description', 'email', 'name', 'slug'],
-            'class' => 'icon-sort-by-alphabet',
+            'class' => 'fa fa-sort-alpha',
         ],
         'amount'   => [
             'rows' => ['amount', 'price'],
-            'class' => 'icon-sort-by-attributes'
+            'class' => 'fa fa-sort-amount'
         ],
         'numeric'  => [
             'rows' => ['created_at', 'updated_at', 'level', 'id', 'phone_number'],
-            'class' => 'icon-sort-by-order'
+            'class' => 'fa fa-sort-numeric'
         ],
     ],
 
     /*
     defines icon set to use when sorted data is none above (alpha nor amount nor numeric)
     */
-    'default_icon_set' => 'icon-sort',
+    'default_icon_set' => 'fa fa-sort',
 
     /*
     icon that shows when generating sortable link while column is not sorted
     */
-    'sortable_icon'    => 'icon-sort',
+    'sortable_icon'    => 'fa fa-sort',
 
     /*
     suffix class that is appended when ascending order is applied
     */
-    'asc_suffix'        => '',
+    'asc_suffix'        => '-asc',
 
     /*
     suffix class that is appended when descending order is applied
     */
-    'desc_suffix'       => '-alt',
+    'desc_suffix'       => '-desc',
 
     /*
     default anchor class, if value is null none is added

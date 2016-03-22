@@ -82,10 +82,7 @@ class TeamController extends Controller
      */
     public function edit(Request $request,Team $team)
     {
-    	
-    	
-    	
-    	return view('team.edit')->with(['team' => $team]);
+    	return view('team.edit')->with(compact('team'));
     }
 
     /**
