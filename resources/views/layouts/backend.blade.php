@@ -28,6 +28,16 @@
 		</section>
 	</section>
 	<script src="{{url('js/all.js')}}"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var nav = $(".nav-primary a[href='@yield('nav')']");
+			nav.addClass('active');
+			nav.parent().addClass('active');
+			var parent_nav = nav.parent().parent().parent();
+			parent_nav.addClass('active');
+			parent_nav.children().first().addClass('active');
+		});
+	</script>
 	@yield('scripts')
 </body>
 </html>

@@ -6,15 +6,16 @@
 				<!-- nav -->
 				<nav class="nav-primary hidden-xs">
 					<ul class="nav">
-						<li class="active"><a href="index.html" class="active"> <i class="fa fa-dashboard icon"> <b class="bg-danger"></b>
+						<li><a href="#"> <i class="fa fa-database icon"> <b class="bg-danger"></b>
 							</i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i>
-							</span> <span>Workset</span>
+							</span> <span>{{trans('app.master_data')}}</span>
 						</a>
 							<ul class="nav lt">
-								<li><a href="index.html" class="active"> <i class="fa fa-angle-right"></i> <span>Dashboard v1</span>
-								</a></li>
-								<li><a href="dashboard.html"> <i class="fa fa-angle-right"></i> <span>Dashboard v2</span>
-								</a></li>
+								@can('team.index')
+									<li>
+										<a href="{{action('TeamController@index')}}"><i class="fa fa-users"></i> <span>{{trans('app.team.manage')}}</span></a>
+									</li>
+								@endcan
 							</ul>
 						</li>
 					</ul>

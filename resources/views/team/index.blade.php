@@ -1,4 +1,5 @@
 @extends('layouts.backend') 
+@section('nav',action('TeamController@index'))
 @section('content')
 <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
 	<li><a href="{{action('BackendController@index')}}"></i>{{trans('app.home')}}</a></li>
@@ -10,7 +11,7 @@
 
 @if(!empty(old('content')))
 <div class="alert alert-{{old('type')}}">
-	<button data-dismiss="alert" class="close" type="button"><i class="icon-remove"></i></button>
+	<button data-dismiss="alert" class="close" type="button"><i class="fa fa-remove"></i></button>
 	{{old('content')}}
 </div>
 @endif
@@ -21,7 +22,7 @@
 	@can('team.store')
 		<div class="row wrapper">
 			<div class="col-sm-12 m-b-xs">
-				<a class="btn btn-success btn-sm" href="{{action('TeamController@create')}}"><i class="icon-plus-sign-alt"></i> {{trans('app.team.create')}}</a>
+				<a class="btn btn-success btn-sm" href="{{action('TeamController@create')}}"><i class="fa fa-plus-square"></i> {{trans('app.team.create')}}</a>
 			</div>
 		</div>
 	@endcan
@@ -44,13 +45,13 @@
 						<td>{{$team->name}}</td>
 						<td>
 							@can('team.update')
-								<a class="btn btn-info btn-xs" href="{{action('TeamController@edit',$team->id)}}"><i class="icon-edit"></i> {{trans('app.edit')}}</a>
+								<a class="btn btn-info btn-xs" href="{{action('TeamController@edit',$team->id)}}"><i class="fa fa-edit"></i> {{trans('app.edit')}}</a>
 							@endcan
 							@can('team.destroy')
 								<form action="{{action('TeamController@destroy',$team->id)}}" method="POST" style="display: inline;">
             						{{ csrf_field() }}
             						{{ method_field('DELETE') }}
-           							<button type="submit" class="btn btn-danger btn-xs"><i class="icon-remove-sign"></i> {{trans('app.delete')}}</button>
+           							<button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> {{trans('app.delete')}}</button>
         						</form>
         					@endcan
 						</td>

@@ -26,8 +26,8 @@
 			<div class="line line-dashed line-lg pull-in"></div>
 			<div class="form-group">
 				<div class="col-sm-4 col-sm-offset-2">
-					<a href="{{action('TeamController@index')}}" class="btn btn-default"><i class="icon-undo"></i> {{trans('app.cancel')}}</a>
-					<button class="btn btn-primary" type="submit"><i class="icon-save"></i> {{trans('app.create')}}</button>
+					<a href="{{action('TeamController@index')}}" class="btn btn-default"><i class="fa fa-undo"></i> {{trans('app.cancel')}}</a>
+					<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> {{trans('app.create')}}</button>
 				</div>
 			</div>
 		</form>
