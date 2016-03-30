@@ -11,11 +11,16 @@
 							</span> <span>{{trans('app.master_data')}}</span>
 						</a>
 							<ul class="nav lt">
-								@can('team.index')
+								@permission('team.index')
 									<li>
 										<a href="{{action('TeamController@index')}}"><i class="fa fa-users"></i> <span>{{trans('app.team.manage')}}</span></a>
 									</li>
-								@endcan
+								@endpermission
+								@permission('team.index')
+									<li>
+										<a href="{{action('UserController@index')}}"><i class="fa fa-user"></i> <span>{{trans('app.user.manage')}}</span></a>
+									</li>
+								@endpermission
 							</ul>
 						</li>
 					</ul>

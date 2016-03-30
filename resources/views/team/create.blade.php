@@ -1,4 +1,6 @@
-@extends('layouts.backend') @section('content')
+@extends('layouts.backend') 
+@section('nav',action('TeamController@index'))
+@section('content')
 <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
 	<li><a href="{{action('BackendController@index')}}"></i>{{trans('app.home')}}</a></li>
 	<li><a href="{{action('TeamController@index')}}">{{trans('app.team.manage')}}</a></li>

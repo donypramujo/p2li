@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'limit' => 2,
+    'limit' => 50,
 
 ];

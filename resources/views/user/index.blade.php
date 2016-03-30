@@ -1,12 +1,12 @@
 @extends('layouts.backend') 
-@section('nav',action('TeamController@index'))
+@section('nav',action('UserController@index'))
 @section('content')
 <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
 	<li><a href="{{action('BackendController@index')}}"></i>{{trans('app.home')}}</a></li>
-	<li class="active">{{trans('app.team.manage')}}</li>
+	<li class="active">{{trans('app.user.manage')}}</li>
 </ul>
 <div class="m-b-md">
-	<h3 class="m-b-none">{{trans('app.team.manage')}}</h3>
+	<h3 class="m-b-none">{{trans('app.user.manage')}}</h3>
 </div>
 
 @if(!empty(old('content')))
@@ -17,37 +17,39 @@
 @endif
 
 <section class="panel panel-default">
-	<header class="panel-heading">{{trans('app.team.teams')}}</header>
-	@permission('team.store')
+	<header class="panel-heading">{{trans('app.user.users')}}</header>
+	@permission('user.store')
 		<div class="row wrapper">
 			<div class="col-sm-12 m-b-xs">
-				<a class="btn btn-success btn-sm" href="{{action('TeamController@create')}}"><i class="fa fa-plus-square"></i> {{trans('app.team.create')}}</a>
+				<a class="btn btn-success btn-sm" href="{{action('UserController@create')}}"><i class="fa fa-plus-square"></i> {{trans('app.user.create')}}</a>
 			</div>
 		</div>
 	@endpermission
-	@if (count($teams) > 0)
+	@if (count($users) > 0)
 	<div class="table-responsive">
 		<table class="table table-striped b-t b-light">
 			<thead>
 				<tr>
-					<th>{{trans('app.team.id')}}</th>
-					@sortablelink ('name',trans('app.team.name'))
+					<th>{{trans('app.user.id')}}</th>
+					<th>{{trans('app.user.name')}}</th>
+					<th>{{trans('app.user.email')}}</th>
 					<th>
 						{{trans('app.action')}}
 					</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($teams as $team)
+				@foreach($users as $user)
 					<tr>
-						<td>{{$team->id}}</td>
-						<td>{{$team->name}}</td>
+						<td>{{$user->id}}</td>
+						<td>{{$user->name}}</td>
+						<td>{{$user->email}}</td>
 						<td>
-							@permission('team.update')
-								<a class="btn btn-info btn-xs" href="{{action('TeamController@edit',$team->id)}}"><i class="fa fa-edit"></i> {{trans('app.edit')}}</a>
+							@permission('user.update')
+								<a class="btn btn-info btn-xs" href="{{action('UserController@edit',$user->id)}}"><i class="fa fa-edit"></i> {{trans('app.edit')}}</a>
 							@endpermission
-							@permission('team.destroy')
-								<form action="{{action('TeamController@destroy',$team->id)}}" method="POST" style="display: inline;">
+							@permission('user.destroy')
+								<form action="{{action('UserController@destroy',$user->id)}}" method="POST" style="display: inline;">
             						{{ csrf_field() }}
             						{{ method_field('DELETE') }}
            							<button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> {{trans('app.delete')}}</button>
@@ -60,8 +62,9 @@
 		</table>
 	</div>
 	@endif
-	@include('pagination.default', ['paginator' => $teams])
+	@include('pagination.default', ['paginator' => $users])
 </section>
+
 @endsection
 
 

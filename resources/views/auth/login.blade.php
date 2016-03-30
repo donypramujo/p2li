@@ -5,7 +5,7 @@
 	<header class="panel-heading text-center">
 		<strong>{{trans('app.login')}}</strong>
 	</header>
-	<form action="{{ url('/backend/login') }}" role="form" method="POST" class="panel-body wrapper-lg" >
+	<form action="{{action('Auth\AuthController@login')}}" role="form" method="POST" class="panel-body wrapper-lg" >
 		{!! csrf_field() !!}
 		<div class="form-group">
 			<label class="control-label">{{trans('app.email_address')}}</label> 
@@ -25,7 +25,7 @@
 			<label> <input type="checkbox" name="remember">{{trans('app.remember_me')}}
 			</label>
 		</div>
-		<a href="{{ url('backend/password/reset') }}" class="pull-right m-t-xs"><small>{{trans('app.forgot_password')}}</small></a>
+		<a href="{{ action('Auth\PasswordController@showResetForm') }}" class="pull-right m-t-xs"><small>{{trans('app.forgot_password')}}</small></a>
 		<button type="submit" class="btn btn-primary">{{trans('app.login')}}</button>
 		<div class="line line-dashed"></div>
 	</form>

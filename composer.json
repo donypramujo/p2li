@@ -7,8 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "spatie/laravel-permission": "^1.3",
-        "spatie/laravel-authorize": "^1.0"
+        "zizaco/entrust": "5.2.x-dev",
+        "owen-it/laravel-auditing": "2.2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

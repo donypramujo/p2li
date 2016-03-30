@@ -1,7 +1,9 @@
-@extends('layouts.backend') @section('content')
+@extends('layouts.backend')
+@section('nav',action('TeamController@index'))
+@section('content')
 <ul class="breadcrumb no-border no-radius b-b b-light pull-in">
-	<li><a href="{{url('backend')}}"></i>{{trans('app.home')}}</a></li>
-	<li><a href="{{url('backend/team')}}">{{trans('app.team.manage')}}</a></li>
+	<li><a href="{{action('BackendController@index')}}"></i>{{trans('app.home')}}</a></li>
+	<li><a href="{{action('TeamController@index')}}">{{trans('app.team.manage')}}</a></li>
 	<li class="active">{{trans('app.team.edit')}}</li>
 </ul>
 
@@ -27,7 +29,7 @@
 			<div class="form-group">
 				<div class="col-sm-4 col-sm-offset-2">
 					<a href="{{action('TeamController@index')}}" class="btn btn-default"><i class="fa fa-undo"></i> {{trans('app.cancel')}}</a>
-					<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> {{trans('app.create')}}</button>
+					<button class="btn btn-primary" type="submit"><i class="fa fa-edit"></i> {{trans('app.edit')}}</button>
 				</div>
 			</div>
 		</form>

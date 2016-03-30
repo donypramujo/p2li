@@ -10,6 +10,8 @@ return [
 		'forgot_password' => 'Forgot Your Password?',
 		'reset_password' => 'Reset Password',
 		'change_password' => 'Change Password',
+		'old_password' => 'Old Password',
+		'wrong_old_password' => 'Wrong Old Password',
 		'short_name' => 'P2LI',
 		'create' => 'Create',
 		'cancel' => 'Cancel',
@@ -17,6 +19,7 @@ return [
 		'action' => 'Action',
 		'delete' => 'Delete',
 		'edit' => 'Edit',
+		'submit' => 'Submit',
 		'master_data' => 'Master Data',
 		'alert.data.update' => 'Data has been updated.',
 		'alert.data.store' => 'Data has been stored.',
@@ -29,5 +32,19 @@ return [
 				'create' => 'Create Team',
 				'manage' => 'Manage Team',
 				'edit' => 'Edit Team' 
-		] 
+		],
+		'user' => [
+				'user' => 'User',
+				'users' => 'Users',
+				'id' => 'ID',
+				'name' => 'Name',
+				'email' => 'E-Mail',
+				'password' => 'Password',
+				'confirm_password' => 'Confirm Password',
+				'create' => 'Create User',				
+				'manage' => 'Manage User',
+				'edit' => 'Edit User',
+				'create_notification' => 'Create User Notification',
+				'edit_notification' => 'Edit User Notification'
+		]
 ];

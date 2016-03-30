@@ -12,7 +12,7 @@
         	{{ session('status') }}
         </div>
     @endif
-	<form role="form" method="POST" action="{{ url('backend/password/email') }}" class="panel-body wrapper-lg" >
+	<form role="form" method="POST" action="{{ action('Auth\PasswordController@sendResetLinkEmail') }}" class="panel-body wrapper-lg" >
 		{!! csrf_field() !!}
 		<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 			<label class="control-label">{{trans('app.email_address')}}</label> 

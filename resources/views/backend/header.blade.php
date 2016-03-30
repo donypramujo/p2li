@@ -14,9 +14,9 @@
 		</a>
 			<ul class="dropdown-menu animated fadeInRight">
 				<span class="arrow top"></span>
-				<li><a href="#">{{trans('app.change_password')}}</a></li>
+				<li><a href="{{action('BackendController@showChangePasswordForm')}}">{{trans('app.change_password')}}</a></li>
 				<li class="divider"></li>
-				<li><a href="{{url('backend/logout')}}">{{trans('app.logout')}}</a></li>
+				<li><a href="{{action('Auth\AuthController@logout')}}">{{trans('app.logout')}}</a></li>
 			</ul></li>
 	</ul>
 </header>

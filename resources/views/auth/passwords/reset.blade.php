@@ -6,7 +6,7 @@
 	<header class="panel-heading text-center">
 		<strong>{{trans('app.reset_password')}}</strong>
 	</header>
-	<form role="form" method="POST" action="{{ url('backend/password/reset') }}" class="panel-body wrapper-lg" >
+	<form role="form" method="POST" action="{{ action('Auth\PasswordController@reset') }}" class="panel-body wrapper-lg" >
 		{!! csrf_field() !!}
 		<input type="hidden" name="token" value="{{ $token }}">
 		<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

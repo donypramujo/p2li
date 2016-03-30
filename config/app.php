@@ -155,8 +155,10 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-    		
-    	Spatie\Permission\PermissionServiceProvider::class,
+    	
+    	//plugins
+    	Zizaco\Entrust\EntrustServiceProvider::class,
+    	OwenIt\Auditing\AuditingServiceProvider::class,
     ],
 
     /*
@@ -202,6 +204,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+    		
+    	//plugins	
+    	'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
     ],
 

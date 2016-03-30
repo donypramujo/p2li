@@ -28,7 +28,9 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = 'backend';
+    
+    protected $redirectAfterLogout = 'backend/login';
 
     /**
      * Create a new authentication controller instance.
@@ -69,4 +71,17 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    
+    /*
+     * override method
+     */
+//     public function showRegistrationForm()
+//     {
+//     	return redirect('backend/login');
+//     }
+    
+//     public function register()
+//     {
+//     	return redirect('backend/login');
+//     }
 }
