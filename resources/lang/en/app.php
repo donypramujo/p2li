@@ -6,6 +6,7 @@ return [
 		'email_address' => 'E-Mail Address',
 		'password' => 'Password',
 		'confirm_password' => 'Confirm Password',
+		'confirm_delete' => 'Are you sure want to delete :value?',
 		'remember_me' => 'Remember Me',
 		'forgot_password' => 'Forgot Your Password?',
 		'reset_password' => 'Reset Password',
@@ -46,5 +47,23 @@ return [
 				'edit' => 'Edit User',
 				'create_notification' => 'Create User Notification',
 				'edit_notification' => 'Edit User Notification'
-		]
+		],
+		'category' => [
+				'category' => 'Category',
+				'categories' => 'Categories',
+				'id' => 'ID',
+				'name' => 'Name',
+				'create' => 'Create Category',
+				'manage' => 'Manage Category',
+				'edit' => 'Edit Category',
+				
+				'overall_impression' => 'Overall Impression',
+				'head' => 'Head',
+				'face' => 'Face',
+				'body_shape' => 'Body Shape',
+				'marking' => 'Marking',
+				'pearl' => 'Pearl',
+				'color' => 'Color',
+				'finnage' => 'Finnage',
+		],
 ];

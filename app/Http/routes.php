@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
     //
 });
 
-Route::group(['middleware' => 'web','prefix' => 'backend'], function () {
+Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
    Route::auth();
 
    Route::get('/', 'BackendController@index');
@@ -53,6 +53,17 @@ Route::group(['middleware' => 'web','prefix' => 'backend'], function () {
    		Route::get('{user}/edit',['as' =>'user.edit','middleware'=>['permission:user.edit'] ,'uses' => 'UserController@edit']);
    		Route::put('{user}',['as' =>'user.update','middleware'=>['permission:user.update'] ,'uses' => 'UserController@update']);
    		Route::delete('{user}',['as' =>'user.destroy','middleware'=>['permission:user.destroy'] ,'uses' => 'UserController@destroy']);
+   	});
+   	
+   	
+   	Route::group(['prefix' => 'category'], function () {
+   		Route::get('/',['as' =>'category.index','middleware'=>['permission:category.index'] ,'uses' => 'CategoryController@index']);
+   		Route::get('create',['as' =>'category.create','middleware'=>['permission:category.create'] ,'uses' => 'CategoryController@create']);
+   		Route::post('store',['as' =>'category.store','middleware'=>['permission:category.store'] ,'uses' => 'CategoryController@store']);
+   		Route::get('{category}',['as' =>'category.show','middleware'=>['permission:category.show'] ,'uses' => 'CategoryController@show']);
+   		Route::get('{category}/edit',['as' =>'category.edit','middleware'=>['permission:category.edit'] ,'uses' => 'CategoryController@edit']);
+   		Route::put('{category}',['as' =>'category.update','middleware'=>['permission:category.update'] ,'uses' => 'CategoryController@update']);
+   		Route::delete('{category}',['as' =>'category.destroy','middleware'=>['permission:category.destroy'] ,'uses' => 'CategoryController@destroy']);
    	});
    
    

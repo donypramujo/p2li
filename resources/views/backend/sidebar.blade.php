@@ -11,14 +11,19 @@
 							</span> <span>{{trans('app.master_data')}}</span>
 						</a>
 							<ul class="nav lt">
-								@permission('team.index')
+								@permission('user.index')
 									<li>
-										<a href="{{action('TeamController@index')}}"><i class="fa fa-users"></i> <span>{{trans('app.team.manage')}}</span></a>
+										<a href="{{action('UserController@index')}}"><i class="fa fa-user"></i> <span>{{trans('app.user.manage')}}</span></a>
+									</li>
+								@endpermission
+								@permission('category.index')
+									<li>
+										<a href="{{action('CategoryController@index')}}"><i class="fa fa-object-group"></i> <span>{{trans('app.category.manage')}}</span></a>
 									</li>
 								@endpermission
 								@permission('team.index')
 									<li>
-										<a href="{{action('UserController@index')}}"><i class="fa fa-user"></i> <span>{{trans('app.user.manage')}}</span></a>
+										<a href="{{action('TeamController@index')}}"><i class="fa fa-users"></i> <span>{{trans('app.team.manage')}}</span></a>
 									</li>
 								@endpermission
 							</ul>

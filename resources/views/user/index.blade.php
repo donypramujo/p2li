@@ -49,7 +49,7 @@
 								<a class="btn btn-info btn-xs" href="{{action('UserController@edit',$user->id)}}"><i class="fa fa-edit"></i> {{trans('app.edit')}}</a>
 							@endpermission
 							@permission('user.destroy')
-								<form action="{{action('UserController@destroy',$user->id)}}" method="POST" style="display: inline;">
+								<form onsubmit="return confirm('{{trans('app.confirm_delete',['value'=>$user->name])}}');" action="{{action('UserController@destroy',$user->id)}}" method="POST" style="display: inline;">
             						{{ csrf_field() }}
             						{{ method_field('DELETE') }}
            							<button type="submit" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> {{trans('app.delete')}}</button>

@@ -79,7 +79,7 @@ return [
     'timezone'             => 'The :attribute must be a valid zone.',
     'unique'               => 'The :attribute has already been taken.',
     'url'                  => 'The :attribute format is invalid.',
-
+	'total_rate' => 'The Total Rate must be 100 percent.',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
@@ -109,7 +109,20 @@ return [
     */
 
     'attributes' => [
-    		'name' => 'Name'
+    		'name' => 'Name',
+    		'email' => 'E-Mail',
+    		'password' => 'Password',
+    		
+    		'rate_overall_impression' => 'Overall Impression',
+    		'rate_head' => 'Head',
+    		'rate_face' => 'Face',
+    		'rate_body_shape' => 'Body Shape',
+    		'rate_marking' => 'Marking',
+    		'rate_pearl' => 'Pearl',
+    		'rate_color' => 'Color',
+    		'rate_finnage' => 'Finnage',
+    		
     ],
 
 ];
+ 

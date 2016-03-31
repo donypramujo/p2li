@@ -14,12 +14,12 @@
 <section class="panel panel-default">
 	<header class="panel-heading font-bold">{{trans('app.team.team')}}</header>
 	<div class="panel-body">
-		<form action="{{action('TeamController@store')}}" method="post" class="form-horizontal">
+		<form action="{{action('TeamController@store')}}" method="post" class="form-horizontal" autocomplete="off">
 			{!! csrf_field() !!}
 			<div class="form-group {{$errors->has('name') ? 'has-error' : '' }}">
-				<label class="col-sm-2 control-label">{{trans('app.team.name')}}</label>
+				<label class="col-sm-2 control-label font-bold">{{trans('app.team.name')}}</label>
 				<div class="col-sm-10">
-					<input type="text" name="name" class="form-control" value="{{old('name')}}">
+					<input type="text" name="name" class="form-control" value="{{old('name')}}" maxlength="50">
 					@foreach($errors->get('name') as $error)
 						<span class="help-block m-b-none text-danger">{{$error}}</span>
 					@endforeach

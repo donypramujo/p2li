@@ -14,12 +14,12 @@
 <section class="panel panel-default">
 	<header class="panel-heading font-bold">{{trans('app.user.user')}}</header>
 	<div class="panel-body">
-		<form action="{{action('UserController@store')}}" method="post" class="form-horizontal">
+		<form action="{{action('UserController@store')}}" method="post" class="form-horizontal" autocomplete="off">
 			{!! csrf_field() !!}
 			<div class="form-group {{$errors->has('name') ? 'has-error' : '' }}">
 				<label class="col-sm-2 control-label font-bold">{{trans('app.user.name')}}</label>
 				<div class="col-sm-10">
-					<input type="text" name="name" class="form-control" value="{{old('name')}}">
+					<input type="text" name="name" class="form-control" value="{{old('name')}}" maxlength="255">
 					@foreach($errors->get('name') as $error)
 						<span class="help-block m-b-none text-danger">{{$error}}</span>
 					@endforeach
@@ -28,7 +28,7 @@
 			<div class="form-group {{$errors->has('email') ? 'has-error' : '' }}">
 				<label class="col-sm-2 control-label font-bold">{{trans('app.user.email')}}</label>
 				<div class="col-sm-10">
-					<input type="text" name="email" class="form-control" value="{{old('email')}}">
+					<input type="text" name="email" class="form-control" value="{{old('email')}}" maxlength="255">
 					@foreach($errors->get('email') as $error)
 						<span class="help-block m-b-none text-danger">{{$error}}</span>
 					@endforeach
