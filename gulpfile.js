@@ -18,6 +18,8 @@ elixir(function(mix) {
         'font-awesome.min.css',
         'font.css',
 //        '../js/calendar/bootstrap_calendar.css',
+        '../js/select2/select2.css',
+        '../js/select2/theme.css',
         'app.css'
     ]);
 });
@@ -34,6 +36,7 @@ elixir(function(mix) {
         'charts/flot/jquery.flot.tooltip.min.js',
         'charts/flot/jquery.flot.resize.js',
         'charts/flot/jquery.flot.grow.js',
+        'select2/select2.min.js',
 //        'calendar/bootstrap_calendar.js',
 //        'calendar/demo.js',
         'sortable/jquery.sortable.js',

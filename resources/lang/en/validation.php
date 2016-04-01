@@ -122,6 +122,8 @@ return [
     		'rate_color' => 'Color',
     		'rate_finnage' => 'Finnage',
     		
+    		'category_id' => 'Category'
+    		
     ],
 
 ];

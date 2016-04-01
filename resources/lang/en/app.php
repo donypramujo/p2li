@@ -66,4 +66,21 @@ return [
 				'color' => 'Color',
 				'finnage' => 'Finnage',
 		],
+		'subcategory' => [
+				'subcategory' => 'Subcategory',
+				'subcategories' => 'Subcategories',
+				'id' => 'ID',
+				'name' => 'Name',
+				'create' => 'Create Subcategory',
+				'manage' => 'Manage Subcategory',
+				'edit' => 'Edit Subcategory',
+		],
+		
+		'configuration' => [
+				'configuration' => 'Configuration',
+				'max_score' => 'Max Score',
+				'penalty_minor' => 'Penalty (Minor)',
+				'penalty_major' => 'Penalty (Major)',
+				'selected_contest' => 'Selected Contest',
+		]
 ];

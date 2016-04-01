@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\Subcategory;
+use App\Category;
 
 class SubcategoryController extends Controller
 {
+	
+	public function __construct(){
+		$this->middleware('auth');
+	}
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +20,12 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        //
+    	
+    	$subcategory = Subcategory::paginate(config('pagination.limit'));
+    	
+    	return view('subcategory.index',[
+    			'subcategories'=> $subcategory
+    	]);
     }
 
     /**
@@ -25,7 +35,8 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-        //
+    	$categories = Category::all();
+    	return view('subcategory.create',compact('categories'));
     }
 
     /**
@@ -36,7 +47,19 @@ class SubcategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	$this->validate ( $request, [
+    		'name' => 'required|unique:subcategories|max:20',
+    		'category_id' => 'required',
+    	] );
+    	 
+    	 
+    	$subcategory = Subcategory::create($request->except('_token'));
+    	$subcategory->save();
+    	 
+    	return redirect()->action('SubcategoryController@index')->withInput([
+    			'type' => 'info',
+    			'content' => trans('app.alert.data.store')
+    	]);;
     }
 
     /**
@@ -56,9 +79,11 @@ class SubcategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Subcategory $subcategory)
     {
         //
+    	$categories = Category::all();
+    	return view('subcategory.edit')->with(compact(['subcategory','categories']));
     }
 
     /**
@@ -68,9 +93,20 @@ class SubcategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Subcategory $subcategory)
     {
-        //
+    	$this->validate ( $request, [
+    			'name' => "required|unique:subcategories,name,$subcategory->id|max:20",
+    			'category_id' => 'required',
+    	] );
+    	
+    	$subcategory->fill($request->except('_token'));
+    	$subcategory->update();
+    	
+    	return redirect()->action('SubcategoryController@index')->withInput([
+    			'type' => 'info',
+    			'content' => trans('app.alert.data.update')
+    	]);
     }
 
     /**
@@ -79,8 +115,12 @@ class SubcategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Subcategory $subcategory)
     {
-        //
+    	$subcategory->delete();
+    	return redirect()->action('SubcategoryController@index')->withInput([
+    			'type' => 'info',
+    			'content' => trans('app.alert.data.destroy')
+    	]);;
     }
 }

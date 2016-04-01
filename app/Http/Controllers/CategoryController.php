@@ -18,12 +18,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
     	
-		$category = Category::sortable()->paginate(config('pagination.limit'));
-		
-		$category->appends($request->except('page'));
+		$category = Category::paginate(config('pagination.limit'));
 		
     	return view('category.index',[
     		'categories'=> $category
@@ -122,7 +120,7 @@ class CategoryController extends Controller
     	$category->fill($request->except('_token'));
     	$category->update();
     	 
-            return redirect()->action('CategoryController@index')->withInput([
+        return redirect()->action('CategoryController@index')->withInput([
         			'type' => 'info',
         			'content' => trans('app.alert.data.update')
         ]);

@@ -3,12 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\Sortable;
 use OwenIt\Auditing\AuditingTrait;
 
 class Category extends Model
 {
-	use Sortable,AuditingTrait;
+	use AuditingTrait;
 	
 	// Disables the log record in this model.
 	protected $auditEnabled  = true;

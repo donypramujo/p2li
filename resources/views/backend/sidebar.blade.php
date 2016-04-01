@@ -21,6 +21,16 @@
 										<a href="{{action('CategoryController@index')}}"><i class="fa fa-object-group"></i> <span>{{trans('app.category.manage')}}</span></a>
 									</li>
 								@endpermission
+								@permission('subcategory.index')
+									<li>
+										<a href="{{action('SubcategoryController@index')}}"><i class="fa fa-object-group"></i> <span>{{trans('app.subcategory.manage')}}</span></a>
+									</li>
+								@endpermission
+								@permission('configuration.index')
+									<li>
+										<a href="{{action('ConfigurationController@index')}}"><i class="fa fa-object-group"></i> <span>{{trans('app.subcategory.manage')}}</span></a>
+									</li>
+								@endpermission
 								@permission('team.index')
 									<li>
 										<a href="{{action('TeamController@index')}}"><i class="fa fa-users"></i> <span>{{trans('app.team.manage')}}</span></a>

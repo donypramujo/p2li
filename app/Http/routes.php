@@ -65,6 +65,22 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
    		Route::put('{category}',['as' =>'category.update','middleware'=>['permission:category.update'] ,'uses' => 'CategoryController@update']);
    		Route::delete('{category}',['as' =>'category.destroy','middleware'=>['permission:category.destroy'] ,'uses' => 'CategoryController@destroy']);
    	});
+   	
+   	Route::group(['prefix' => 'subcategory'], function () {
+   		Route::get('/',['as' =>'subcategory.index','middleware'=>['permission:subcategory.index'] ,'uses' => 'SubcategoryController@index']);
+   		Route::get('create',['as' =>'subcategory.create','middleware'=>['permission:subcategory.create'] ,'uses' => 'SubcategoryController@create']);
+   		Route::post('store',['as' =>'subcategory.store','middleware'=>['permission:subcategory.store'] ,'uses' => 'SubcategoryController@store']);
+   		Route::get('{subcategory}',['as' =>'subcategory.show','middleware'=>['permission:subcategory.show'] ,'uses' => 'SubcategoryController@show']);
+   		Route::get('{subcategory}/edit',['as' =>'subcategory.edit','middleware'=>['permission:subcategory.edit'] ,'uses' => 'SubcategoryController@edit']);
+   		Route::put('{subcategory}',['as' =>'subcategory.update','middleware'=>['permission:subcategory.update'] ,'uses' => 'SubcategoryController@update']);
+   		Route::delete('{subcategory}',['as' =>'subcategory.destroy','middleware'=>['permission:subcategory.destroy'] ,'uses' => 'SubcategoryController@destroy']);
+   	});
+   	
+   	
+   	Route::group(['prefix' => 'configuration'], function () {
+   		Route::get('/',['as' =>'configuration.index','middleware'=>['permission:configuration.index'] ,'uses' => 'ConfigurationController@index']);
+   		Route::post('store',['as' =>'configuration.store','middleware'=>['permission:configuration.store'] ,'uses' => 'ConfigurationController@store']);
+   	});
    
    
    Route::get('/auth/password/change','BackendController@showChangePasswordForm');
