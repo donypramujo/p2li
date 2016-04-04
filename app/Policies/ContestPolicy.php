@@ -53,4 +53,30 @@ class ContestPolicy
     	
     	return in_array($contest->status->name,['Preparation','Nomination']);
     }
+    
+    public function manageContestant(User $user,Contest $contest){
+    	$contest = $this->contests->getCurrent();
+    	if(empty($contest)){
+    		return FALSE;
+    	}
+    	 
+    	return in_array($contest->status->name,['Preparation']);
+    }
+    
+    public function manageNomination(User $user,Contest $contest){
+    	$contest = $this->contests->getCurrent();
+    	if(empty($contest)){
+    		return FALSE;
+    	}
+    
+    	return in_array($contest->status->name,['Nomination']);
+    }
+    
+    public function manageScore(User $user,Contest $contest){
+    	if(empty($contest)){
+    		return FALSE;
+    	}
+    
+    	return in_array($contest->status->name,['Ongoing']);
+    }
 }

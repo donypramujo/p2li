@@ -5,7 +5,7 @@
 <title>{{trans('app.short_name')}}</title>
 <meta name="description" content="{{trans('app.name')}}" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link href="{{url('css/all.css')}}" rel="stylesheet">
+<link href="{{url('public/css/all.css')}}" rel="stylesheet">
 <!--[if lt IE 9]>
 	<script src="{{url('js/ie-plugin.js')}}"></script>
   <![endif]-->
@@ -25,6 +25,6 @@
 			</p>
 		</div>
 	</footer>
-	<script src="{{url('js/all.js')}}"></script>
+	<script src="{{url('public/js/all.js')}}"></script>
 </body>
 </html>

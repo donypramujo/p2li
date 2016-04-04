@@ -40,6 +40,7 @@
 							</ul>
 						</li>
 						@endpermission
+						@permission(['contest.index','jury.index','contestant.index','nomination.index','image.index'])
 						<li><a href="#"> <i class="fa fa-flag icon"> <b class="bg-danger"></b>
 							</i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i>
 							</span> <span>{{trans('app.contest.manage')}}</span>
@@ -55,9 +56,27 @@
 										<a href="{{action('JuryController@index')}}"><i class="fa fa-user"></i> <span>{{trans('app.jury.registration')}}</span></a>
 									</li>
 								@endpermission
-								@permission('contestant.category')
+								@permission('contestant.index')
 									<li>
-										<a href="{{action('ContestantController@showCategoryForm')}}"><i class="fa fa-users"></i> <span>{{trans('app.contestant.registration')}}</span></a>
+										<a href="{{action('ContestantController@index')}}"><i class="fa fa-users"></i> <span>{{trans('app.contestant.registration')}}</span></a>
+									</li>
+								@endpermission
+								@permission('nomination.index')
+									<li>
+										<a href="{{action('NominationController@index')}}"><i class="fa fa-flag"></i> <span>{{trans('app.contestant.nomination')}}</span></a>
+									</li>
+								@endpermission
+							</ul>
+						</li>
+						@endpermission
+						<li><a href="#"> <i class="fa fa-bars icon"> <b class="bg-danger"></b>
+							</i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i>
+							</span> <span>{{trans('app.score.manage')}}</span>
+						</a>
+							<ul class="nav lt">
+								@permission('score.index')
+									<li>
+										<a href="{{action('ScoreController@index')}}"><i class="fa fa-industry"></i> <span>{{trans('app.score.create')}}</span></a>
 									</li>
 								@endpermission
 							</ul>

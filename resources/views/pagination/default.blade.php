@@ -29,9 +29,9 @@
 				<ul class="pagination pagination-sm m-t-none m-b-none">
 	    			<li class="{{ ($paginator->currentPage() == 1) ? ' disabled' : '' }}">
 	    				@if($paginator->currentPage() == 1)
-	    		 			<a href="#"><i class="icon-chevron-left"></i></a>
+	    		 			<a href="#"><i class="fa fa-chevron-left"></i></a>
 	    				@else
-	        				<a href="{{ $paginator->url($paginator->currentPage()-1) }}"><i class="icon-chevron-left"></i></a>
+	        				<a href="{{ $paginator->url($paginator->currentPage()-1) }}"><i class="fa fa-chevron-left"></i></a>
 	        			@endif
 	    			</li>
 	    		@for ($i = 1; $i <= $paginator->lastPage(); $i++)
@@ -41,9 +41,9 @@
 	    		@endfor
 	    			<li class="{{ ($paginator->currentPage() == $paginator->lastPage()) ? 'disabled' : '' }}">
 	    				@if($paginator->currentPage() == $paginator->lastPage())
-	    		 			<a href="#" ><i class="icon-chevron-right"></i></a>
+	    		 			<a href="#" ><i class="fa fa-chevron-right"></i></a>
 	    				@else
-	    					<a href="{{ $paginator->url($paginator->currentPage()+1) }}" ><i class="icon-chevron-right"></i></a>
+	    					<a href="{{ $paginator->url($paginator->currentPage()+1) }}" ><i class="fa fa-chevron-right"></i></a>
 	    				@endif
 	    			</li>
 				</ul>

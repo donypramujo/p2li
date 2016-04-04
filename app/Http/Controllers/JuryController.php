@@ -30,14 +30,14 @@ class JuryController extends Controller
         //
         
     	$contest = $this->contests->getCurrent();
-    	if(empty($contest)){
-    		return redirect()->action('ContestController@index');
-    	}else if($contest->status->name == 'Ongoing'){
-    		return redirect()->action('ContestController@index')->withInput([
-    				'type' => 'info',
-    				'content' => trans('app.jury.register_not_allowed')
-    		]);
-    	}
+//     	if(empty($contest)){
+//     		return redirect()->action('ContestController@index');
+//     	}else if($contest->status->name == 'Ongoing'){
+//     		return redirect()->action('ContestController@index')->withInput([
+//     				'type' => 'info',
+//     				'content' => trans('app.jury.register_not_allowed')
+//     		]);
+//     	}
     	
     	$users = User::whereHas('roles', function($query){
 			$query->where('name','jury');
@@ -142,7 +142,7 @@ class JuryController extends Controller
     	 
     	return redirect()->action('JuryController@index')->withInput([
     			'type' => 'info',
-    			'content' => trans('app.contest.success_cancel')
+    			'content' => trans('app.jury.success_unregister')
     	]);
     }
 }

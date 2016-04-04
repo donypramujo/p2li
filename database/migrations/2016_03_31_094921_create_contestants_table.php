@@ -16,7 +16,7 @@ class CreateContestantsTable extends Migration
             $table->increments('id');
             $table->integer('contest_id')->unsigned();
             $table->integer('subcategory_id')->unsigned();
-            $table->integer('image_id')->unsigned();
+            $table->integer('image_id')->unsigned()->nullable();
             $table->integer('team_id')->unsigned();
             $table->foreign('contest_id')->references('id')->on('contests')
             		->onUpdate('restrict')->onDelete('restrict');

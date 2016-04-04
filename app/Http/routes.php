@@ -103,7 +103,6 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
    	});
    
    	Route::group(['prefix' => 'contestant'], function () {
-   		Route::get('/category',['as' =>'contestant.category','middleware'=>['permission:contestant.category'] ,'uses' => 'ContestantController@showCategoryForm']);
    		Route::get('/',['as' =>'contestant.index','middleware'=>['permission:contestant.index'] ,'uses' => 'ContestantController@index']);
    		Route::get('create',['as' =>'contestant.create','middleware'=>['permission:contestant.create'] ,'uses' => 'ContestantController@create']);
    		Route::post('store',['as' =>'contestant.store','middleware'=>['permission:contestant.store'] ,'uses' => 'ContestantController@store']);
@@ -112,6 +111,26 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
    		Route::put('{contestant}',['as' =>'contestant.update','middleware'=>['permission:contestant.update'] ,'uses' => 'ContestantController@update']);
    		Route::delete('{contestant}',['as' =>'contestant.destroy','middleware'=>['permission:contestant.destroy'] ,'uses' => 'ContestantController@destroy']);
    	});
+   	
+  	Route::group(['prefix' => 'nomination'], function () {
+  		Route::get('/',['as' =>'nomination.index','middleware'=>['permission:nomination.index'] ,'uses' => 'NominationController@index']);
+   		Route::get('create',['as' =>'nomination.create','middleware'=>['permission:nomination.create'] ,'uses' => 'NominationController@create']);
+   		Route::post('store',['as' =>'nomination.store','middleware'=>['permission:nomination.store'] ,'uses' => 'NominationController@store']);
+   		Route::get('{contestant}',['as' =>'nomination.show','middleware'=>['permission:nomination.show'] ,'uses' => 'NominationController@show']);
+   		Route::get('{contestant}/edit',['as' =>'nomination.edit','middleware'=>['permission:nomination.edit'] ,'uses' => 'NominationController@edit']);
+   		Route::put('{contestant}',['as' =>'nomination.update','middleware'=>['permission:nomination.update'] ,'uses' => 'NominationController@update']);
+   		Route::delete('{contestant}',['as' =>'nomination.destroy','middleware'=>['permission:nomination.destroy'] ,'uses' => 'NominationController@destroy']);
+   	});
+  	
+  	Route::group(['prefix' => 'score'], function () {
+  		Route::get('/',['as' =>'score.index','middleware'=>['permission:score.index'] ,'uses' => 'ScoreController@index']);
+  		Route::get('create',['as' =>'score.create','middleware'=>['permission:score.create'] ,'uses' => 'ScoreController@create']);
+  		Route::post('store',['as' =>'score.store','middleware'=>['permission:score.store'] ,'uses' => 'ScoreController@store']);
+  		Route::get('{score}',['as' =>'score.show','middleware'=>['permission:score.show'] ,'uses' => 'ScoreController@show']);
+  		Route::get('{score}/edit',['as' =>'score.edit','middleware'=>['permission:score.edit'] ,'uses' => 'ScoreController@edit']);
+  		Route::put('{score}',['as' =>'score.update','middleware'=>['permission:score.update'] ,'uses' => 'ScoreController@update']);
+  		Route::delete('{score}',['as' =>'score.destroy','middleware'=>['permission:score.destroy'] ,'uses' => 'ScoreController@destroy']);
+  	});
    
    Route::get('/auth/password/change','BackendController@showChangePasswordForm');
    

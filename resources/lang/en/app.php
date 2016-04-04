@@ -22,6 +22,8 @@ return [
 		'delete' => 'Delete',
 		'edit' => 'Edit',
 		'submit' => 'Submit',
+		'filter' => 'Filter',
+		'clear_filter' => 'Clear Filter',
 		'master_data' => 'Master Data',
 		'alert' => [
 			'data'=> [
@@ -130,6 +132,32 @@ return [
 				'success_unregister' => 'Jury has been unregistered.'
 		],
 		'contestant' => [
-			'registration' => 'Contestant Registration'	
+			'contestant' => 'Contestant',
+			'contestants' => 'Contestants',
+			'registration' => 'Contestant Registration'	,
+			'tank_number' => 'Tank No.',
+			'register' => 'Register Contestant',
+			'success_register' => 'Contestant has been registered.',
+			'success_unregister' => 'Contestant has been unregistered.',
+			'nomination' => 'Contestant Nomination',
+			'nominate' => 'Nominate Contestant',
+			'not_found' => 'Contestant not found.',
+			'already_nominate' =>'Contestant already nominated.',
+			'success_nominate' => 'Contestant has been nominated.',
+			'success_denominate' => 'Contestant has been denominated.',
+			'failed_nominate' => 'Constestant nominationi just 10 per category',
+		],
+		'nomination' => [
+			'nomination' => 'Nomination',
+			'nominations' => 'Nominations',
+			'nominate' => 'Nominate Contestant',
+		],
+		'score' => [
+			'manage' => 'Manage Score',
+			'create' => 'Create Score',
+			'scores' =>'Scores',
+			'penalty_type' => 'Penalty Type',
+			'penalty' => 'Penalty' ,
+				'comment' => 'Comment'
 		]
 ];

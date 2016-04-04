@@ -127,7 +127,11 @@ return [
     		'end_date' => 'End Date',
     		
     		'role_id' => 'Role',
-    		'user_id' => 'User'
+    		'user_id' => 'User',
+    		
+    		'subcategory_id' => 'Category',
+    		'tank_number' => 'Tank Number',
+    		'team_id' => 'Team',
     		
     ],
 

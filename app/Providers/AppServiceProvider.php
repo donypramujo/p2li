@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Validator;
+use App\Contestant;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +27,13 @@ class AppServiceProvider extends ServiceProvider
     		return $result == 100;
     	});
     	
+    	
+    	Validator::extend('nominate', function($attribute, $value, $parameters, $validator) {
+    		$data = $validator->getData();
+    		$contestant = Contestant::find($value);
+    		dd($value);
+    		return $contestant->nomination == TRUE ? FALSE : TRUE;
+    	});
     }
 
     /**
