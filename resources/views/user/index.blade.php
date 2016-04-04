@@ -33,6 +33,7 @@
 					<th>{{trans('app.user.id')}}</th>
 					<th>{{trans('app.user.name')}}</th>
 					<th>{{trans('app.user.email')}}</th>
+					<th>{{trans('app.user.role')}}</th>
 					<th>
 						{{trans('app.action')}}
 					</th>
@@ -44,6 +45,7 @@
 						<td>{{$user->id}}</td>
 						<td>{{$user->name}}</td>
 						<td>{{$user->email}}</td>
+						<td>{{collect($user->roles)->first()->display_name}}</td>
 						<td>
 							@permission('user.update')
 								<a class="btn btn-info btn-xs" href="{{action('UserController@edit',$user->id)}}"><i class="fa fa-edit"></i> {{trans('app.edit')}}</a>

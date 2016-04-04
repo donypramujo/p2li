@@ -19,6 +19,7 @@ elixir(function(mix) {
         'font.css',
 //        '../js/calendar/bootstrap_calendar.css',
         '../js/select2/select2.css',
+        '../js/datepicker/datepicker.css',
         '../js/select2/theme.css',
         'app.css'
     ]);
@@ -37,6 +38,7 @@ elixir(function(mix) {
         'charts/flot/jquery.flot.resize.js',
         'charts/flot/jquery.flot.grow.js',
         'select2/select2.min.js',
+        'datepicker/bootstrap-datepicker.js',
 //        'calendar/bootstrap_calendar.js',
 //        'calendar/demo.js',
         'sortable/jquery.sortable.js',

@@ -24,7 +24,7 @@ class UserController extends Controller
     {
     	
 		$user = User::whereHas('roles', function($query){
-			$query->where('name','admin');
+			$query->whereIn('name',['admin','jury']);
 		})->paginate(config('pagination.limit'));
 		
 		
@@ -56,6 +56,7 @@ class UserController extends Controller
 		$this->validate ( $request, [ 
 				'name' => 'required|max:255',
 				'email' => 'required|email|unique:users|max:255',
+				'role_id' => 'required|in:2,3',
 				'password' => 'required|confirmed|min:6',
 		] );
 		
@@ -65,7 +66,7 @@ class UserController extends Controller
 		$user->password = bcrypt($request->input('password'));
 		$user->save ();
 		
-		$role = Role::where('name','admin')->first();
+		$role = Role::find($request->input('role_id'));
 		
 		$user->attachRole($role);
 		
@@ -114,6 +115,7 @@ class UserController extends Controller
     	$this->validate ( $request, [
     			'name' => 'required|max:255',
     			'email' => "required|email|unique:users,email,$user->id|max:255",
+    			'role_id' => 'required|in:2,3',
     			'password' => 'required|confirmed|min:6',
     	] );
     	
@@ -121,7 +123,9 @@ class UserController extends Controller
     	$user->name = $request->input ( 'name' );
     	$user->email = $request->input ( 'email' );
     	$user->password = bcrypt($request->input('password'));
-    	
+    	$role = Role::find($request->input('role_id'));
+    	$user->roles()->detach();
+    	$user->roles()->attach($role);
         $user->update();
         
         Mail::send('mails.user_edit',$request->all(),function($message) use ($request){

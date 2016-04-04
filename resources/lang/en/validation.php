@@ -122,7 +122,12 @@ return [
     		'rate_color' => 'Color',
     		'rate_finnage' => 'Finnage',
     		
-    		'category_id' => 'Category'
+    		'category_id' => 'Category',
+    		'start_date' => 'Start Date',
+    		'end_date' => 'End Date',
+    		
+    		'role_id' => 'Role',
+    		'user_id' => 'User'
     		
     ],
 

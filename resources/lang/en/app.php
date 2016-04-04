@@ -6,9 +6,9 @@ return [
 		'email_address' => 'E-Mail Address',
 		'password' => 'Password',
 		'confirm_password' => 'Confirm Password',
-		'confirm_delete' => 'Are you sure want to delete :value?',
+		'confirm_delete' => 'Are you sure want to delete :value ?',
 		'remember_me' => 'Remember Me',
-		'forgot_password' => 'Forgot Your Password?',
+		'forgot_password' => 'Forgot Your Password ?',
 		'reset_password' => 'Reset Password',
 		'change_password' => 'Change Password',
 		'old_password' => 'Old Password',
@@ -16,15 +16,21 @@ return [
 		'short_name' => 'P2LI',
 		'create' => 'Create',
 		'cancel' => 'Cancel',
+		'to' => 'to',
 		'home' => 'Home',
 		'action' => 'Action',
 		'delete' => 'Delete',
 		'edit' => 'Edit',
 		'submit' => 'Submit',
 		'master_data' => 'Master Data',
-		'alert.data.update' => 'Data has been updated.',
-		'alert.data.store' => 'Data has been stored.',
-		'alert.data.destroy' => 'Data has been deleted.',
+		'alert' => [
+			'data'=> [
+				'update'=>'Data has been updated.',
+				'store'=> 'Data has been stored.',
+				'destroy' => 'Data has been deleted.',
+			]
+		],
+		'call_us' => '0812-9484-0816',
 		'team' => [ 
 				'team' => 'Team',
 				'teams' => 'Teams',
@@ -37,6 +43,7 @@ return [
 		'user' => [
 				'user' => 'User',
 				'users' => 'Users',
+				'role' => 'Role',
 				'id' => 'ID',
 				'name' => 'Name',
 				'email' => 'E-Mail',
@@ -65,6 +72,8 @@ return [
 				'pearl' => 'Pearl',
 				'color' => 'Color',
 				'finnage' => 'Finnage',
+				
+				'select' =>'Select Category',
 		],
 		'subcategory' => [
 				'subcategory' => 'Subcategory',
@@ -82,5 +91,45 @@ return [
 				'penalty_minor' => 'Penalty (Minor)',
 				'penalty_major' => 'Penalty (Major)',
 				'selected_contest' => 'Selected Contest',
+		],
+		'contest' => [
+				'contest' => 'Contest',
+				'contests' => 'Contests',
+				'status' => 'Status',
+				'name' => 'Name',
+				'contest_name' => 'Contest Name',
+				'period' => 'Period',
+				'start_date' => 'Start Date',
+				'end_date' => 'End Date',
+				'manage' => 'Manage Contest',
+				'current' => 'Current Contest',
+				'create' => 'Create Contest',
+				'cancel' => 'Cancel Contest',
+				'confirm_change_status' => 'Are you sure want to change status for :value ?',
+				'confirm_cancel' => 'Are you sure want to cancel contest ?',
+				'success_change_status' => 'Contest status has been changed.',
+				'success_create' => 'Contest has been created.',
+				'success_cancel' => 'Contest has been canceled.',
+		],
+		'status' => [
+				'preparation' => 'Preparation',
+				'nomination' => 'Nomination',
+				'ongoing' => 'Ongoing',
+				'completed' => 'Completed',
+				'canceled' => 'Canceled',
+				'next' => 'Next Status',
+				'change' => 'Change Status'
+		],
+		'jury' => [
+				'registration' => 'Jury Registration',
+				'jury' => 'Jury',
+				'juries' => 'Juries',
+				'register' => 'Register Jury',
+				'register_not_allowed' => 'Register jury not allowed.',
+				'success_register' => 'Jury has been registered.',
+				'success_unregister' => 'Jury has been unregistered.'
+		],
+		'contestant' => [
+			'registration' => 'Contestant Registration'	
 		]
 ];

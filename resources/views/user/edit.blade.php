@@ -34,6 +34,19 @@
 					@endforeach
 				</div>
 			</div>
+			<div class="form-group {{$errors->has('role_id') ? 'has-error' : '' }}">
+				<label class="col-sm-2 control-label font-bold">{{trans('app.user.role')}}</label>
+				<div class="col-sm-10">
+					<select name="role_id" id="select2-option" style="width: 100%;">
+						<option value="">&nbsp;</option>
+						<option value="3" {{($errors->has() ? old('role_id') : collect($user->roles)->first()->id) == 3 ? "selected":""}} >{{\App\Role::find(3)->display_name}}</option>
+						<option value="2" {{($errors->has() ? old('role_id') : collect($user->roles)->first()->id) == 2 ? "selected":""}} >{{\App\Role::find(2)->display_name}}</option>
+					</select>
+					@foreach($errors->get('role_id') as $error)
+						<span class="help-block m-b-none text-danger">{{$error}}</span>
+					@endforeach
+				</div>
+			</div>
 			<div class="form-group {{$errors->has('password') ? 'has-error' : '' }}">
 				<label class="col-sm-2 control-label font-bold">{{trans('app.user.password')}}</label>
 				<div class="col-sm-10">

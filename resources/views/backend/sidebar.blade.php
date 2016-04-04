@@ -2,10 +2,11 @@
 <aside class="bg-dark lter aside-md hidden-print hidden-xs" id="nav">
 	<section class="vbox">
 		<section class="w-f scrollable">
-			<div class="slim-scroll" data-height="auto" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
+			<div class="slim-scroll" data-height="100%" data-disable-fade-out="true" data-distance="0" data-size="5px" data-color="#333333">
 				<!-- nav -->
 				<nav class="nav-primary hidden-xs">
 					<ul class="nav">
+						@permission(['user.index','category.index','subcategory.index','configuration.index','team.index'])
 						<li><a href="#"> <i class="fa fa-database icon"> <b class="bg-danger"></b>
 							</i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i>
 							</span> <span>{{trans('app.master_data')}}</span>
@@ -34,6 +35,29 @@
 								@permission('team.index')
 									<li>
 										<a href="{{action('TeamController@index')}}"><i class="fa fa-users"></i> <span>{{trans('app.team.manage')}}</span></a>
+									</li>
+								@endpermission
+							</ul>
+						</li>
+						@endpermission
+						<li><a href="#"> <i class="fa fa-flag icon"> <b class="bg-danger"></b>
+							</i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i>
+							</span> <span>{{trans('app.contest.manage')}}</span>
+						</a>
+							<ul class="nav lt">
+								@permission('contest.index')
+									<li>
+										<a href="{{action('ContestController@index')}}"><i class="fa fa-tasks"></i> <span>{{trans('app.contest.current')}}</span></a>
+									</li>
+								@endpermission
+								@permission('jury.index')
+									<li>
+										<a href="{{action('JuryController@index')}}"><i class="fa fa-user"></i> <span>{{trans('app.jury.registration')}}</span></a>
+									</li>
+								@endpermission
+								@permission('contestant.category')
+									<li>
+										<a href="{{action('ContestantController@showCategoryForm')}}"><i class="fa fa-users"></i> <span>{{trans('app.contestant.registration')}}</span></a>
 									</li>
 								@endpermission
 							</ul>

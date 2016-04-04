@@ -81,7 +81,37 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
    		Route::get('/',['as' =>'configuration.index','middleware'=>['permission:configuration.index'] ,'uses' => 'ConfigurationController@index']);
    		Route::post('store',['as' =>'configuration.store','middleware'=>['permission:configuration.store'] ,'uses' => 'ConfigurationController@store']);
    	});
+   	
+   	Route::group(['prefix' => 'contest'], function () {
+   		Route::get('/',['as' =>'contest.index','middleware'=>['permission:contest.index'] ,'uses' => 'ContestController@index']);
+   		Route::get('create',['as' =>'contest.create','middleware'=>['permission:contest.create'] ,'uses' => 'ContestController@create']);
+   		Route::post('store',['as' =>'contest.store','middleware'=>['permission:contest.store'] ,'uses' => 'ContestController@store']);
+   		Route::get('{contest}',['as' =>'contest.show','middleware'=>['permission:contest.show'] ,'uses' => 'ContestController@show']);
+   		Route::get('{contest}/edit',['as' =>'contest.edit','middleware'=>['permission:contest.edit'] ,'uses' => 'ContestController@edit']);
+   		Route::put('{contest}',['as' =>'contest.update','middleware'=>['permission:contest.update'] ,'uses' => 'ContestController@update']);
+   		Route::delete('{contest}',['as' =>'contest.destroy','middleware'=>['permission:contest.destroy'] ,'uses' => 'ContestController@destroy']);
+   	});
+   	
+   	Route::group(['prefix' => 'jury'], function () {
+   		Route::get('/',['as' =>'jury.index','middleware'=>['permission:jury.index'] ,'uses' => 'JuryController@index']);
+   		Route::get('create',['as' =>'jury.create','middleware'=>['permission:jury.create'] ,'uses' => 'JuryController@create']);
+   		Route::post('store',['as' =>'jury.store','middleware'=>['permission:jury.store'] ,'uses' => 'JuryController@store']);
+   		Route::get('{jury}',['as' =>'jury.show','middleware'=>['permission:jury.show'] ,'uses' => 'JuryController@show']);
+   		Route::get('{jury}/edit',['as' =>'jury.edit','middleware'=>['permission:jury.edit'] ,'uses' => 'JuryController@edit']);
+   		Route::put('{jury}',['as' =>'jury.update','middleware'=>['permission:jury.update'] ,'uses' => 'JuryController@update']);
+   		Route::delete('{jury}',['as' =>'jury.destroy','middleware'=>['permission:jury.destroy'] ,'uses' => 'JuryController@destroy']);
+   	});
    
+   	Route::group(['prefix' => 'contestant'], function () {
+   		Route::get('/category',['as' =>'contestant.category','middleware'=>['permission:contestant.category'] ,'uses' => 'ContestantController@showCategoryForm']);
+   		Route::get('/',['as' =>'contestant.index','middleware'=>['permission:contestant.index'] ,'uses' => 'ContestantController@index']);
+   		Route::get('create',['as' =>'contestant.create','middleware'=>['permission:contestant.create'] ,'uses' => 'ContestantController@create']);
+   		Route::post('store',['as' =>'contestant.store','middleware'=>['permission:contestant.store'] ,'uses' => 'ContestantController@store']);
+   		Route::get('{contestant}',['as' =>'contestant.show','middleware'=>['permission:contestant.show'] ,'uses' => 'ContestantController@show']);
+   		Route::get('{contestant}/edit',['as' =>'contestant.edit','middleware'=>['permission:contestant.edit'] ,'uses' => 'ContestantController@edit']);
+   		Route::put('{contestant}',['as' =>'contestant.update','middleware'=>['permission:contestant.update'] ,'uses' => 'ContestantController@update']);
+   		Route::delete('{contestant}',['as' =>'contestant.destroy','middleware'=>['permission:contestant.destroy'] ,'uses' => 'ContestantController@destroy']);
+   	});
    
    Route::get('/auth/password/change','BackendController@showChangePasswordForm');
    
