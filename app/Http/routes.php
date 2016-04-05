@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +23,6 @@ Route::get('/', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
-Route::group(['middleware' => ['web']], function () {
-    //
 });
 
 Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
@@ -126,9 +121,7 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
   		Route::get('/',['as' =>'score.index','middleware'=>['permission:score.index'] ,'uses' => 'ScoreController@index']);
   		Route::get('create',['as' =>'score.create','middleware'=>['permission:score.create'] ,'uses' => 'ScoreController@create']);
   		Route::post('store',['as' =>'score.store','middleware'=>['permission:score.store'] ,'uses' => 'ScoreController@store']);
-  		Route::get('{score}',['as' =>'score.show','middleware'=>['permission:score.show'] ,'uses' => 'ScoreController@show']);
   		Route::get('{score}/edit',['as' =>'score.edit','middleware'=>['permission:score.edit'] ,'uses' => 'ScoreController@edit']);
-  		Route::put('{score}',['as' =>'score.update','middleware'=>['permission:score.update'] ,'uses' => 'ScoreController@update']);
   		Route::delete('{score}',['as' =>'score.destroy','middleware'=>['permission:score.destroy'] ,'uses' => 'ScoreController@destroy']);
   	});
    

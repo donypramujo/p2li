@@ -12,6 +12,7 @@ use App\Repositories\JuryRepository;
 use App\Score;
 use App\Subcategory;
 use App\Repositories\ConfigurationRepository;
+use Illuminate\Support\Facades\DB;
 
 class ScoreController extends Controller
 {
@@ -71,6 +72,10 @@ class ScoreController extends Controller
     	$score->rate_finnage = 0;
     	$score->rate_penalty = 0;
     	
+    	$score->penalty_type='';
+    	
+    	$score->valid = FALSE;
+    	
     	$score->contestant()->associate($contestant);
     	$score->jury()->associate($jury);
     	return $score;
@@ -95,9 +100,10 @@ class ScoreController extends Controller
     	
     	$subcategory = Subcategory::findOrFail($request->input('subcategory_id'));
     	
-    	$contestants = Contestant::where('subcategory_id',$subcategory->id)->get();
+    	$contestants = Contestant::where('subcategory_id',$subcategory->id)->where('contest_id',$contest->id)->where('nomination',TRUE)->get();
     	
     	$scores = [];
+    	
     	
     	foreach ($contestants as $contestant){
     		
@@ -111,6 +117,10 @@ class ScoreController extends Controller
     		
     		$scores[] = $score;
     	}
+    	
+    	$scores = collect($scores)->sortBy(function($score){
+    		return $score->contestant->tank_number;
+    	});
     	
     	
     	return view('score.create',compact('subcategory','scores'));
@@ -137,8 +147,7 @@ class ScoreController extends Controller
     	if(in_array($input_name,['penalty_type','comment'])){
     		$this->validate ( $request, [
     				'pk' => 'required',
-    				'name' => 'required',
-    				'value' => 'required',
+    				'name' => 'required'
     		]);
     		
     	}else{
@@ -194,7 +203,9 @@ class ScoreController extends Controller
 			])->sum() - $score->score_penalty;
 
 			$score->score_final = $score_final;
-			$score->save();
+			if(!$score->valid){
+				$score->save();
+			}
 			return;
 		}
 		
@@ -202,7 +213,9 @@ class ScoreController extends Controller
 			$score->fill([
 					$request->input('name') => $request->input('value'),
 			]);
-			$score->save();
+			if(!$score->valid){
+				$score->save();
+			}
 			return;
 		}
 		
@@ -237,7 +250,9 @@ class ScoreController extends Controller
 			])->sum() - $score->score_penalty;
 
 			$score->score_final = $score_final;
-			$score->save();
+			if(!$score->valid){
+				$score->save();
+			}
 			return;
 		}
 		
@@ -251,19 +266,6 @@ class ScoreController extends Controller
 		
 		
 		$score_name ='score_'.$request->input('name');
-		
-		
-		$score->rate_overall_impression = 0;
-		$score->rate_head = 0;
-		$score->rate_face = 0;
-		$score->rate_body_shape = 0;
-		$score->rate_marking = 0;
-		$score->rate_pearl = 0;
-		$score->rate_color = 0;
-		$score->rate_finnage = 0;
-		$score->rate_penalty = 0;
-		
-	
 		
 		$score->fill([
 				$name => $value,
@@ -284,7 +286,10 @@ class ScoreController extends Controller
 		
 		$score->score_final = $score_final;
 		
-		$score->save();
+		
+		if(!$score->valid){
+			$score->save();
+		}
         
     }
 
@@ -294,9 +299,27 @@ class ScoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Subcategory $subcategory)
     {
-        //
+    	
+    	$contest = $this->contests->getCurrent();
+    	$jury = $this->juries->getJury($contest);
+    	
+    	$this->authorize('manageScore',$contest);
+    	$this->authorize('checkJury',$jury);
+    	
+    	$scores = Score::whereHas('contestant',function($query) use($subcategory,$contest){
+    		$query->where('subcategory_id',$subcategory->id)->where('contest_id',$contest->id)->where('nomination',TRUE);
+    	})->where('jury_id',$jury->id)->get();
+    	
+    	
+    	$scores = $scores->sortBy(function($score){
+    		return $score->contestant->tank_number;
+    	});
+    	
+    	
+    	return view('score.show',compact(['scores','subcategory']));
+    	
     }
 
     /**
@@ -317,9 +340,30 @@ class ScoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Subcategory $subcategory)
     {
-        //
+    	$contest = $this->contests->getCurrent();
+    	$jury = $this->juries->getJury($contest);
+    	
+    	$this->authorize('manageScore',$contest);
+    	$this->authorize('checkJury',$jury);
+    	
+    	$scores = Score::whereHas('contestant',function($query) use($subcategory,$contest){
+    		$query->where('subcategory_id',$subcategory->id)->where('contest_id',$contest->id)->where('nomination',TRUE);
+    	})->where('jury_id',$jury->id)->get();
+    	
+    	
+    	foreach ($scores  as $score){
+    		$score->valid = TRUE;
+    		$score->update();
+    	}
+    	
+    	return redirect()->action("ScoreController@create",[
+    			'subcategory_id' => $subcategory->id
+    	])->withInput([
+    			'type' => 'info',
+    			'content' => trans('app.score.success_validate')
+    	]);
     }
 
     /**

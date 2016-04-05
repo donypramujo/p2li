@@ -11,4 +11,9 @@ class ConfigurationRepository {
 		return $config->value;
 	}
 	
+	public  function getConfig($key){
+		$config = Configuration::where('key',$key)->first();
+		return $config;
+	}
+	
 }

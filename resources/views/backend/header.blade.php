@@ -10,7 +10,7 @@
 		<li class="hidden-xs"></li>
 		<li class="dropdown hidden-xs"></li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-user"></i>
-		  {{ Auth::user()->name }} <b class="caret"></b>
+		  {{ Auth::user()->name }} -	<td>{{collect(Auth::user()->roles)->first()->display_name}}</td> <b class="caret"></b>
 		</a>
 			<ul class="dropdown-menu animated fadeInRight">
 				<span class="arrow top"></span>

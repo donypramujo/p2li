@@ -6,7 +6,7 @@
 				<!-- nav -->
 				<nav class="nav-primary hidden-xs">
 					<ul class="nav">
-						@permission(['user.index','category.index','subcategory.index','configuration.index','team.index'])
+						@permission(['user.index','category.index','subcategory.index','config.index','team.index'])
 						<li><a href="#"> <i class="fa fa-database icon"> <b class="bg-danger"></b>
 							</i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i>
 							</span> <span>{{trans('app.master_data')}}</span>
@@ -27,9 +27,9 @@
 										<a href="{{action('SubcategoryController@index')}}"><i class="fa fa-object-group"></i> <span>{{trans('app.subcategory.manage')}}</span></a>
 									</li>
 								@endpermission
-								@permission('configuration.index')
+								@permission('config.index')
 									<li>
-										<a href="{{action('ConfigurationController@index')}}"><i class="fa fa-object-group"></i> <span>{{trans('app.subcategory.manage')}}</span></a>
+										<a href="{{action('ConfigController@index')}}"><i class="fa fa-tags"></i> <span>{{trans('app.config.config')}}</span></a>
 									</li>
 								@endpermission
 								@permission('team.index')
@@ -69,6 +69,7 @@
 							</ul>
 						</li>
 						@endpermission
+						@permission(['score.index'])
 						<li><a href="#"> <i class="fa fa-bars icon"> <b class="bg-danger"></b>
 							</i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i>
 							</span> <span>{{trans('app.score.manage')}}</span>
@@ -81,6 +82,7 @@
 								@endpermission
 							</ul>
 						</li>
+						@endpermission
 					</ul>
 				</nav>
 				<!-- / nav -->

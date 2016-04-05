@@ -17,11 +17,37 @@ elixir(function(mix) {
         'animate.css',
         'font-awesome.min.css',
         'font.css',
-//        '../js/calendar/bootstrap_calendar.css',
         '../js/select2/select2.css',
         '../js/datepicker/datepicker.css',
         '../js/select2/theme.css',
         'app.css'
+    ]);
+});
+
+
+elixir(function(mix) {
+    mix.styles([
+        'bootstrap.css',
+        'animate.css',
+        'font-awesome.min.css',
+        'font.css',
+        '../js/select2/select2.css',
+        '../js/select2/theme.css',
+        'landing.css',
+        'app.css'
+    ], 'public/css/landing.css');
+});
+
+elixir(function(mix) {
+    mix.scripts([
+        'jquery.min.js',
+        'bootstrap.js',
+        'app.js',
+        'slimscroll/jquery.slimscroll.min.js',
+        'select2/select2.min.js',
+        'datepicker/bootstrap-datepicker.js',
+        'sortable/jquery.sortable.js',
+        'app.plugin.js'
     ]);
 });
 
@@ -31,19 +57,12 @@ elixir(function(mix) {
         'bootstrap.js',
         'app.js',
         'slimscroll/jquery.slimscroll.min.js',
-        'charts/easypiechart/jquery.easy-pie-chart.js',
-        'charts/sparkline/jquery.sparkline.min.js',
-        'charts/flot/jquery.flot.min.js',
-        'charts/flot/jquery.flot.tooltip.min.js',
-        'charts/flot/jquery.flot.resize.js',
-        'charts/flot/jquery.flot.grow.js',
+        'appear/jquery.appear.js',
+        'scroll/smoothscroll.js',
+        'landing.js',
         'select2/select2.min.js',
-        'datepicker/bootstrap-datepicker.js',
-//        'calendar/bootstrap_calendar.js',
-//        'calendar/demo.js',
-        'sortable/jquery.sortable.js',
         'app.plugin.js'
-    ]);
+    ], 'public/js/landing.js');
 });
 
 elixir(function(mix) {

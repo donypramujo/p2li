@@ -34,7 +34,7 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label font-bold">{{trans('app.contest.period')}}</label>
 					<div class="col-sm-10">
-						<p class="form-control-static">{{$contest->start_date->format('d M Y')}} {{trans('app.to')}} {{$contest->end_date->format('d M Y')}}</p>
+						<p class="form-control-static">{{$contest->start_date->format('d M Y')}} <b>{{trans('app.to')}}</b> {{$contest->end_date->format('d M Y')}}</p>
 					</div>
 				</div>
 				<div class="form-group">

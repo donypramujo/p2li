@@ -41,7 +41,7 @@ class CreateScoresTable extends Migration
             $table->decimal('score_final',12,2)->unsigned();
             
             $table->boolean('valid');
-            $table->enum('penalty_type', ['minor','major']);
+            $table->enum('penalty_type', ['minor','major','']);
             $table->decimal('rate_penalty',5,2)->unsigned();
             $table->decimal('score_penalty',12,2)->unsigned();
             $table->string('comment',20);

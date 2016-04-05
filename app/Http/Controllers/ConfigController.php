@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Configuration;
+use App\Contest;
+use App\Repositories\ConfigurationRepository;
 
 
-class ConfigurationController extends Controller
+class ConfigController extends Controller
 {
 	
-	public function __construct(){
+	protected $configs;
+	
+	public function __construct(ConfigurationRepository $configs){
 		$this->middleware('auth');
+		$this->configs = $configs;
 	}
+	
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +32,9 @@ class ConfigurationController extends Controller
 			$configs[$configuration->key] = $configuration->value; 
 		}
 		
-    	return view('configuration.index', compact('configs'));
+		$contests =	Contest::all();
+		
+    	return view('configuration.index', compact('configs','contests'));
     }
 
     /**
@@ -47,7 +55,33 @@ class ConfigurationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	$this->validate ( $request, [
+    			'max_score' => 'required|numeric',
+    			'rate_penalty_minor' => 'required|numeric|between:0,100',
+    			'rate_penalty_major' => 'required|numeric|between:0,100',
+    			'contest' => 'required',
+    	] );
+    	
+    	$max_score = $this->configs->getConfig('max_score');
+    	$max_score->value = $request->input('max_score');
+    	$max_score->save();
+    	
+    	$rate_penalty_minor = $this->configs->getConfig('rate_penalty_minor');
+    	$rate_penalty_minor->value = $request->input('rate_penalty_minor');
+    	$rate_penalty_minor->save();
+    	
+    	$rate_penalty_major = $this->configs->getConfig('rate_penalty_major');
+    	$rate_penalty_major->value = $request->input('rate_penalty_major');
+    	$rate_penalty_major->save();
+    	
+    	$contest = $this->configs->getConfig('contest');
+    	$contest->value = $request->input('contest');
+    	$contest->save();
+    	
+    	return redirect()->action('ConfigController@index')->withInput([
+    			'type' => 'info',
+    			'content' => trans('app.alert.data.update')
+    	]);
     }
 
     /**

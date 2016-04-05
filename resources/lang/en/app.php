@@ -3,6 +3,7 @@ return [
 		'name' => 'Perhimpunan Pencinta Louhan Indonesia',
 		'login' => 'Login',
 		'logout' => 'Logout',
+		'for' => 'for',
 		'email_address' => 'E-Mail Address',
 		'password' => 'Password',
 		'confirm_password' => 'Confirm Password',
@@ -23,8 +24,10 @@ return [
 		'edit' => 'Edit',
 		'submit' => 'Submit',
 		'filter' => 'Filter',
+		'search' => 'Search',
 		'clear_filter' => 'Clear Filter',
 		'master_data' => 'Master Data',
+		'print' => 'Print',
 		'alert' => [
 			'data'=> [
 				'update'=>'Data has been updated.',
@@ -40,7 +43,8 @@ return [
 				'name' => 'Name',
 				'create' => 'Create Team',
 				'manage' => 'Manage Team',
-				'edit' => 'Edit Team' 
+				'edit' => 'Edit Team' ,
+				'team_name' => 'Team Name'
 		],
 		'user' => [
 				'user' => 'User',
@@ -87,8 +91,9 @@ return [
 				'edit' => 'Edit Subcategory',
 		],
 		
-		'configuration' => [
-				'configuration' => 'Configuration',
+		'config' => [
+				'edit' => 'Edit Config',
+				'config' => 'Configuration',
 				'max_score' => 'Max Score',
 				'penalty_minor' => 'Penalty (Minor)',
 				'penalty_major' => 'Penalty (Major)',
@@ -112,6 +117,7 @@ return [
 				'success_change_status' => 'Contest status has been changed.',
 				'success_create' => 'Contest has been created.',
 				'success_cancel' => 'Contest has been canceled.',
+				'selected' => 'Selected Contest'
 		],
 		'status' => [
 				'preparation' => 'Preparation',
@@ -156,8 +162,22 @@ return [
 			'manage' => 'Manage Score',
 			'create' => 'Create Score',
 			'scores' =>'Scores',
+			'rank' => 'Rank',
+			'valid' => 'Valid',
 			'penalty_type' => 'Penalty Type',
 			'penalty' => 'Penalty' ,
-				'comment' => 'Comment'
+			'total' =>'Grand Total',
+			'comment' => 'Comment',
+			'result' => 'Score Result',
+			'validate' => 'Validate Score',
+				'confirm_validate' => 'Are you sure want to validate score for :name ?',
+				'success_validate' => 'Scores has been validated.',
+			'detail' => 'Score Detail',
+				'score' => 'Score',
+		],
+		'live_score' => [
+				's' => 'Live Scores',
+				'team' => 'Live Team Scores'
 		]
 ];
+ 
