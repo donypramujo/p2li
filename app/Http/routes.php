@@ -23,7 +23,9 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-});
+	Route::get('/' ,'HomeController@index');
+	Route::get('/show/{contestant}','HomeController@show');
+	Route::get('/live/team/scores','HomeController@showLiveTeamScores');
 
 Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
    Route::auth();
@@ -49,6 +51,12 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
    		Route::put('{user}',['as' =>'user.update','middleware'=>['permission:user.update'] ,'uses' => 'UserController@update']);
    		Route::delete('{user}',['as' =>'user.destroy','middleware'=>['permission:user.destroy'] ,'uses' => 'UserController@destroy']);
    	});
+   	
+   	Route::group(['prefix' => 'config'], function () {
+   		Route::get('/',['as' =>'config.index','middleware'=>['permission:config.index'] ,'uses' => 'ConfigController@index']);
+   		Route::post('store',['as' =>'config.store','middleware'=>['permission:config.store'] ,'uses' => 'ConfigController@store']);
+   	});
+   		
    	
    	
    	Route::group(['prefix' => 'category'], function () {
@@ -121,7 +129,9 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
   		Route::get('/',['as' =>'score.index','middleware'=>['permission:score.index'] ,'uses' => 'ScoreController@index']);
   		Route::get('create',['as' =>'score.create','middleware'=>['permission:score.create'] ,'uses' => 'ScoreController@create']);
   		Route::post('store',['as' =>'score.store','middleware'=>['permission:score.store'] ,'uses' => 'ScoreController@store']);
+  		Route::get('{subcategory}',['as' =>'score.show','middleware'=>['permission:score.show'] ,'uses' => 'ScoreController@show']);
   		Route::get('{score}/edit',['as' =>'score.edit','middleware'=>['permission:score.edit'] ,'uses' => 'ScoreController@edit']);
+  		Route::put('{subcategory}',['as' =>'score.update','middleware'=>['permission:score.update'] ,'uses' => 'ScoreController@update']);
   		Route::delete('{score}',['as' =>'score.destroy','middleware'=>['permission:score.destroy'] ,'uses' => 'ScoreController@destroy']);
   	});
    
