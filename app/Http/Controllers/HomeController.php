@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 
-use App\LiveScores;
+use App\LiveScore;
 use App\Repositories\ConfigurationRepository;
 use Illuminate\Http\Request;
 use App\Contest;
 use App\Subcategory;
-use Illuminate\Support\Facades\Auth;
 use App\Score;
 use App\Contestant;
 use App\LiveTeamScore;
@@ -40,7 +39,7 @@ class HomeController extends Controller
 		$liveScores = NULL;
 		$subcategory = NULL;
 		if(!empty($subcategory_id)){
-			$liveScores  =LiveScores::where('subcategory_id',$subcategory_id)->get();
+			$liveScores  =LiveScore::where('subcategory_id',$subcategory_id)->where('contest_id',$contest->id)->get();
 			$subcategory = Subcategory::findOrFail($subcategory_id);
 			
 		}
@@ -62,7 +61,6 @@ class HomeController extends Controller
 		$contest = Contest::findOrFail($contest_id);
 		
 		$scores = LiveTeamScore::where('contest_id',$contest_id)->get();
-		
 		
 		return view('home.live_team_scores',compact(['scores','contest']));
 		

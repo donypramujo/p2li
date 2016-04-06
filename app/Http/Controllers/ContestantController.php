@@ -30,6 +30,9 @@ class ContestantController extends Controller
     public function index(Request $request)
     {
     	$contest = $this->contests->getCurrent();
+    	if(empty($contest)){
+    		return redirect()->action('ContestController@index');
+    	};
     	$categories = Category::orderBy('id','asc')->with('subcategories')->get();
     	$teams = Team::all();
     	

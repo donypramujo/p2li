@@ -160,13 +160,15 @@ return [
 		],
 		'score' => [
 			'manage' => 'Manage Score',
+				'team' => 'Team Scores',
 			'create' => 'Create Score',
 			'scores' =>'Scores',
 			'rank' => 'Rank',
 			'valid' => 'Valid',
 			'penalty_type' => 'Penalty Type',
 			'penalty' => 'Penalty' ,
-			'total' =>'Grand Total',
+			'total' =>'Total',
+			'grand_total' =>'Grand Total',
 			'comment' => 'Comment',
 			'result' => 'Score Result',
 			'validate' => 'Validate Score',
@@ -178,6 +180,12 @@ return [
 		'live_score' => [
 				's' => 'Live Scores',
 				'team' => 'Live Team Scores'
+		],
+		'report' => [
+				'report' => 'Report',
+				'score' => 'Report Score',
+				'score_detail' => 'Report Score Detail',
+				'team_score' => 'Report Team Score'
 		]
 ];
  

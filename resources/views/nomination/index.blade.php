@@ -63,8 +63,9 @@
 				<div class="col-sm-6">
 					<div class="input-group">
 						<input name="search_value" type="text" value="{{$search_value}}" placeholder="Filter" class="input-sm form-control"> <span class="input-group-btn">
-						<button type="submit" class="btn btn-sm btn-default">{{trans('app.filter')}}</button>
-						<a href="{{action('NominationController@index')}}" class="btn btn-sm btn-danger">{{trans('app.clear_filter')}}</a>
+						<button type="submit" class="btn btn-sm btn-default"><i class="fa fa-filter"></i> {{trans('app.filter')}}</button>
+						<a href="{{action('NominationController@show',Request::all())}}" target="_blank" class="btn btn-sm btn-info" ><i class="fa fa-print"></i> {{trans('app.print')}}</a>
+						<a href="{{action('NominationController@index')}}" class="btn btn-sm btn-danger"><i class="fa fa-refresh"></i> {{trans('app.clear_filter')}}</a>
 						</span>
 					</div>
 				</div>

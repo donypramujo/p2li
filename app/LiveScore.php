@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LiveScores extends Model
+class LiveScore extends Model
 {
 	
 	public function team(){

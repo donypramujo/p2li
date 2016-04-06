@@ -76,7 +76,7 @@
 								<th>{{trans('app.score.rank')}}</th>
 								<th>{{trans('app.contestant.tank_number')}}</th>
 								<th>{{trans('app.team.team')}}</th>
-								<th>{{trans('app.score.total')}}</th>
+								<th>{{trans('app.score.grand_total')}}</th>
 							</tr>
 						</thead>
 						<tbody>

@@ -9,6 +9,7 @@ use App\Repositories\ContestRepository;
 use App\Contestant;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
+use App\Contest;
 
 class NominationController extends Controller
 {
@@ -27,6 +28,9 @@ class NominationController extends Controller
     public function index(Request $request)
     {
     	$contest = $this->contests->getCurrent();
+    	if(empty($contest)){
+    		return redirect()->action('ContestController@index');
+    	};
     	 
     	$search_field = $request->input ( 'search_field' );
     	$search_value = $request->input ( 'search_value' );
@@ -130,6 +134,9 @@ class NominationController extends Controller
     
     	 
     }
+    
+    
+    
 
     /**
      * Display the specified resource.
@@ -137,9 +144,37 @@ class NominationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+    	$contest = $this->contests->getCurrent();
+    	if(empty($contest)){
+    		return redirect()->action('ContestController@index');
+    	};
+    	
+    	$search_field = $request->input ( 'search_field' );
+    	$search_value = $request->input ( 'search_value' );
+    	
+    	$query = NULL;
+    	if ($search_field == 'subcategory') {
+    		$query = Contestant::whereHas ( 'subcategory', function ($query) use ($search_value) {
+    			$query->where ( 'name', 'LIKE', "%$search_value%" );
+    		} );
+    	} else if ($search_field == 'team') {
+    		 
+    		$query = Contestant::whereHas ( 'team', function ($query) use ($search_value) {
+    			$query->where ( 'name', 'LIKE', "%$search_value%" );
+    		});
+    			 
+    	} else if ($search_field == 'tank_number') {
+    		$query = Contestant::where ( 'tank_number', $search_value );
+    	} else {
+    		$query = new Contestant();
+    	}
+    	 
+    	$contestants = $query->where('contest_id',$contest->id)->where('nomination',TRUE)->get();
+    	
+    	
+    	return view('nomination.show',compact(['contestants','contest']));
     }
 
     /**

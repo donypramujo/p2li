@@ -83,6 +83,24 @@
 							</ul>
 						</li>
 						@endpermission
+						@role(['admin','sa'])
+						<li><a href="#"> <i class="fa fa-print icon"> <b class="bg-danger"></b>
+							</i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i>
+							</span> <span>{{trans('app.report.report')}}</span>
+						</a>
+							<ul class="nav lt">
+								<li>
+									<a href="{{action('ReportController@filterScore')}}"><i class="fa fa-newspaper-o"></i> <span>{{trans('app.report.score')}}</span></a>
+								</li>
+								<li>
+									<a href="{{action('ReportController@filterScoreDetail')}}"><i class="fa fa-newspaper-o"></i> <span>{{trans('app.report.score_detail')}}</span></a>
+								</li>
+								<li>
+									<a href="{{action('ReportController@filterTeamScore')}}"><i class="fa fa-newspaper-o"></i> <span>{{trans('app.report.team_score')}}</span></a>
+								</li>
+							</ul>
+						</li>
+						@endrole
 					</ul>
 				</nav>
 				<!-- / nav -->

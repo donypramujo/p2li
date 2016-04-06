@@ -119,7 +119,7 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
   		Route::get('/',['as' =>'nomination.index','middleware'=>['permission:nomination.index'] ,'uses' => 'NominationController@index']);
    		Route::get('create',['as' =>'nomination.create','middleware'=>['permission:nomination.create'] ,'uses' => 'NominationController@create']);
    		Route::post('store',['as' =>'nomination.store','middleware'=>['permission:nomination.store'] ,'uses' => 'NominationController@store']);
-   		Route::get('{contestant}',['as' =>'nomination.show','middleware'=>['permission:nomination.show'] ,'uses' => 'NominationController@show']);
+   		Route::get('show',['as' =>'nomination.show','middleware'=>['permission:nomination.show'] ,'uses' => 'NominationController@show']);
    		Route::get('{contestant}/edit',['as' =>'nomination.edit','middleware'=>['permission:nomination.edit'] ,'uses' => 'NominationController@edit']);
    		Route::put('{contestant}',['as' =>'nomination.update','middleware'=>['permission:nomination.update'] ,'uses' => 'NominationController@update']);
    		Route::delete('{contestant}',['as' =>'nomination.destroy','middleware'=>['permission:nomination.destroy'] ,'uses' => 'NominationController@destroy']);
@@ -133,6 +133,16 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
   		Route::get('{score}/edit',['as' =>'score.edit','middleware'=>['permission:score.edit'] ,'uses' => 'ScoreController@edit']);
   		Route::put('{subcategory}',['as' =>'score.update','middleware'=>['permission:score.update'] ,'uses' => 'ScoreController@update']);
   		Route::delete('{score}',['as' =>'score.destroy','middleware'=>['permission:score.destroy'] ,'uses' => 'ScoreController@destroy']);
+  	});
+  	
+  	
+  	Route::group(['middleware'=>['role:admin|sa'],'prefix' => 'report'], function () {
+  		Route::get('filter/score','ReportController@filterScore');
+  		Route::get('print/score','ReportController@printScore');
+  		Route::get('filter/score_detail','ReportController@filterScoreDetail');
+  		Route::get('print/score_detail','ReportController@printScoreDetail');
+  		Route::get('filter/team/score','ReportController@filterTeamScore');
+  		Route::get('print/team/score','ReportController@printTeamScore');
   	});
    
    Route::get('/auth/password/change','BackendController@showChangePasswordForm');
