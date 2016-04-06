@@ -15,8 +15,8 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path');
-            $table->string('original_image_name',50)->unique();
-            $table->string('compress_image_name',50)->unique();
+            $table->string('file_name',50)->unique();
+            $table->string('mime_type')->unique();
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ elixir(function(mix) {
         '../js/select2/select2.css',
         '../js/datepicker/datepicker.css',
         '../js/select2/theme.css',
+        '../js/lightbox-4.0.1/ekko-lightbox.css',
         'app.css'
     ]);
 });
@@ -33,6 +34,7 @@ elixir(function(mix) {
         'font.css',
         '../js/select2/select2.css',
         '../js/select2/theme.css',
+        '../js/lightbox-4.0.1/ekko-lightbox.css',
         'landing.css',
         'app.css'
     ], 'public/css/landing.css');
@@ -47,6 +49,8 @@ elixir(function(mix) {
         'select2/select2.min.js',
         'datepicker/bootstrap-datepicker.js',
         'sortable/jquery.sortable.js',
+        'file-input/bootstrap-filestyle.min.js',
+        'lightbox-4.0.1/ekko-lightbox.js',
         'app.plugin.js'
     ]);
 });
@@ -61,7 +65,8 @@ elixir(function(mix) {
         'scroll/smoothscroll.js',
         'landing.js',
         'select2/select2.min.js',
-        'app.plugin.js'
+        'app.plugin.js',
+        'lightbox-4.0.1/ekko-lightbox.js',
     ], 'public/js/landing.js');
 });
 

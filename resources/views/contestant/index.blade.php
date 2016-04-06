@@ -72,6 +72,16 @@
 					@endforeach
 				</div>
 			</div>
+			
+			<div class="form-group {{$errors->has('owner') ? 'has-error' : '' }}">
+				<label class="col-sm-2 control-label font-bold">{{trans('app.contestant.owner')}}</label>
+				<div class="col-sm-10">
+					<input type="text" name="owner" class="form-control" value="{{old('owner')}}" maxlength="20">
+					@foreach($errors->get('owner') as $error)
+						<span class="help-block m-b-none text-danger">{{$error}}</span>
+					@endforeach
+				</div>
+			</div>
 		
 			<div class="line line-dashed line-lg pull-in"></div>
 			<div class="form-group">
@@ -113,6 +123,7 @@
 			<thead>
 				<tr>
 					@sortablelink ('tank_number',trans('app.contestant.tank_number'))
+					<th>{{trans('app.contestant.owner')}}</th>
 					@sortablelink ('subcategory_id',trans('app.category.category'))
 					@sortablelink ('team_id',trans('app.team.team'))
 					<th>
@@ -124,6 +135,7 @@
 				@foreach($contestants as $contestant)
 					<tr>
 						<td>{{$contestant->tank_number}}</td>
+						<td>{{$contestant->owner}}</td>
 						<td>{{$contestant->subcategory->name}}</td>
 						<td>{{$contestant->team->name}}</td>
 						<td>

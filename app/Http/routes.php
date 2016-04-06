@@ -144,10 +144,18 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
   		Route::get('filter/team/score','ReportController@filterTeamScore');
   		Route::get('print/team/score','ReportController@printTeamScore');
   	});
+  	
+  	
+  	Route::group(['middleware'=>['role:admin|sa'],'prefix' => 'image'], function () {
+  		Route::get('/','ImageController@index');
+  		Route::get('{contestant}','ImageController@show');
+  		Route::post('store','ImageController@store');
+  	});
    
    Route::get('/auth/password/change','BackendController@showChangePasswordForm');
    
    Route::post('/auth/password/change','BackendController@changePassword');
+   
    
    
    

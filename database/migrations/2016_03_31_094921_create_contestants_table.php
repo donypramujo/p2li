@@ -23,6 +23,7 @@ class CreateContestantsTable extends Migration
             $table->foreign('subcategory_id')->references('id')->on('subcategories')
             		->onUpdate('restrict')->onDelete('restrict');
             $table->integer('tank_number')->unsigned();
+            $table->string('owner',50)->nullable;
             $table->boolean('nomination');
             $table->foreign('image_id')->references('id')->on('images')
             		->onUpdate('restrict')->onDelete('restrict');

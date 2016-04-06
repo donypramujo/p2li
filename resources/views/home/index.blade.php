@@ -76,15 +76,22 @@
 								<th>{{trans('app.score.rank')}}</th>
 								<th>{{trans('app.contestant.tank_number')}}</th>
 								<th>{{trans('app.team.team')}}</th>
+									<th>{{trans('app.image.image')}}</th>
 								<th>{{trans('app.score.grand_total')}}</th>
 							</tr>
 						</thead>
 						<tbody>
 							@foreach($liveScores as $index => $liveScore)
 							<tr>
+								
 								<td>{{$index+1}}</td>
 								<td>{{$liveScore->tank_number}}</td>
 								<td>{{$liveScore->team->name}}</td>
+									@if(is_null($liveScore->contestant->image))
+							<td>-</td>
+						@else
+							<td><a data-remote="{{url($liveScore->contestant->image->path.$liveScore->contestant->image->file_name)}}" data-toggle="lightbox"><img src="{{url($liveScore->contestant->image->path.'resize/'.$liveScore->contestant->image->file_name)}}" alt="{{trans('app.image.no_image')}}" width="80"  height="60"></a></td>
+						@endif
 								<td><a href="{{action('HomeController@show',$liveScore->id)}}" class="text-info">{{$liveScore->score}}</a></td>
 							</tr>
 							@endforeach
@@ -99,4 +106,13 @@
 </div>
 
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+	$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+    	event.preventDefault();
+   	 $(this).ekkoLightbox();
+	});
+	</script>
 @endsection

@@ -40,7 +40,7 @@
 							</ul>
 						</li>
 						@endpermission
-						@permission(['contest.index','jury.index','contestant.index','nomination.index','image.index'])
+						@permission(['contest.index','jury.index','contestant.index','nomination.index'])
 						<li><a href="#"> <i class="fa fa-flag icon"> <b class="bg-danger"></b>
 							</i> <span class="pull-right"> <i class="fa fa-angle-down text"></i> <i class="fa fa-angle-up text-active"></i>
 							</span> <span>{{trans('app.contest.manage')}}</span>
@@ -66,6 +66,11 @@
 										<a href="{{action('NominationController@index')}}"><i class="fa fa-flag"></i> <span>{{trans('app.contestant.nomination')}}</span></a>
 									</li>
 								@endpermission
+								@role(['admin','sa'])
+									<li>
+										<a href="{{action('ImageController@index')}}"><i class="fa fa-file-image-o"></i> <span>{{trans('app.image.upload')}}</span></a>
+									</li>
+								@endrole
 							</ul>
 						</li>
 						@endpermission

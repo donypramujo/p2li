@@ -94,7 +94,8 @@ class ContestantController extends Controller
     	$this->validate($request, [
     			'subcategory_id' => 'required',
     			'team_id' => 'required',
-    			'tank_number' => "required|numeric|unique:contestants,tank_number,NULL,id,contest_id,$contest->id"
+    			'tank_number' => "required|numeric|unique:contestants,tank_number,NULL,id,contest_id,$contest->id",
+    			'owner' => 'required|max:50'
     	]);
     	
     	
@@ -109,6 +110,7 @@ class ContestantController extends Controller
     	$contestant->contest()->associate($contest);
     	
     	$contestant->tank_number = $request->input('tank_number');
+    	$contestant->owner = $request->input('owner');
     	$contestant->save();
     	
     	return redirect()->action('ContestantController@index')->withInput([

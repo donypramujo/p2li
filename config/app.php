@@ -159,6 +159,7 @@ return [
     	//plugins
     	Zizaco\Entrust\EntrustServiceProvider::class,
     	OwenIt\Auditing\AuditingServiceProvider::class,
+    	Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -207,6 +208,7 @@ return [
     		
     	//plugins	
     	'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+    	'Image' => Intervention\Image\Facades\Image::class
 
     ],
 

@@ -142,6 +142,7 @@ return [
 			'contestants' => 'Contestants',
 			'registration' => 'Contestant Registration'	,
 			'tank_number' => 'Tank No.',
+			'owner' => 'Owner',
 			'register' => 'Register Contestant',
 			'success_register' => 'Contestant has been registered.',
 			'success_unregister' => 'Contestant has been unregistered.',
@@ -185,7 +186,13 @@ return [
 				'report' => 'Report',
 				'score' => 'Report Score',
 				'score_detail' => 'Report Score Detail',
-				'team_score' => 'Report Team Score'
+				'team_score' => 'Report Team Score',
+				'score_by_team' => 'Report By Team'
+		],
+		'image' => [
+				'upload' => 'Upload Image',
+				'image' => 'Image',
+				'no_image' => 'No Image'
 		]
 ];
  
