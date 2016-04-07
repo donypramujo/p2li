@@ -74,7 +74,7 @@
 								<td>{{$jury->user->name}}</td>
 								<td>{{$jury->user->email}}</td>
 								<td>
-									@permission('subcategory.destroy')
+									@permission('jury.destroy')
 										<form onsubmit="return confirm('{{trans('app.confirm_delete',['value'=>$jury->user->name])}}');" action="{{action('JuryController@destroy',$jury->id)}}" method="POST" style="display: inline;">
 		            						{{ csrf_field() }}
 		            						{{ method_field('DELETE') }}

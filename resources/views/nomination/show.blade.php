@@ -51,7 +51,7 @@
 						<td>{{$contestant->subcategory->name}}</td>
 						<td>{{$contestant->team->name}}</td>
 						<td>
-							@permission('category.destroy')
+							@permission('nomination.destroy')
 								<form onsubmit="return confirm('{{trans('app.confirm_delete',['value'=>$contestant->id])}}');" action="{{action('NominationController@destroy',$contestant->id)}}" method="POST" style="display: inline;" >
             						{{ csrf_field() }}
             						{{ method_field('DELETE') }}

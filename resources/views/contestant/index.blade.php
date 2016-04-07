@@ -139,10 +139,10 @@
 						<td>{{$contestant->subcategory->name}}</td>
 						<td>{{$contestant->team->name}}</td>
 						<td>
-							@permission('category.update')
+							@permission('contestant.update')
 								<a class="btn btn-info btn-xs" href="{{action('ContestantController@edit',$contestant->id)}}"><i class="fa fa-edit"></i> {{trans('app.edit')}}</a>
 							@endpermission
-							@permission('category.destroy')
+							@permission('contestant.destroy')
 								<form onsubmit="return confirm('{{trans('app.confirm_delete',['value'=>$contestant->tank_number])}}');" action="{{action('ContestantController@destroy',$contestant->id)}}" method="POST" style="display: inline;" >
             						{{ csrf_field() }}
             						{{ method_field('DELETE') }}

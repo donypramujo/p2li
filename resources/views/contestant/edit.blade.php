@@ -30,6 +30,7 @@
 					<p class="form-control-static">{{$contest->name}} - <span class="text-info">{{$contest->status->name}}</span></p>
 				</div>
 			</div>
+			
 			<div class="form-group {{$errors->has('subcategory_id') ? 'has-error' : '' }}">
 				<label class="col-sm-2 control-label font-bold">{{trans('app.category.category')}}</label>
 				<div class="col-sm-10">
@@ -69,6 +70,17 @@
 				<div class="col-sm-10">
 					<input type="text" name="tank_number" class="form-control" value="{{ $errors->has() ? old('tank_number') : $contestant->tank_number }}" maxlength="20">
 					@foreach($errors->get('tank_number') as $error)
+						<span class="help-block m-b-none text-danger">{{$error}}</span>
+					@endforeach
+				</div>
+			</div>
+			
+			
+			<div class="form-group {{$errors->has('owner') ? 'has-error' : '' }}">
+				<label class="col-sm-2 control-label font-bold">{{trans('app.contestant.owner')}}</label>
+				<div class="col-sm-10">
+					<input type="text" name="owner" class="form-control" value="{{ $errors->has() ? old('owner') : $contestant->owner }}" maxlength="20">
+					@foreach($errors->get('owner') as $error)
 						<span class="help-block m-b-none text-danger">{{$error}}</span>
 					@endforeach
 				</div>
