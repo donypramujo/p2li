@@ -2,30 +2,30 @@
 @section('content')
 
 <div class="m-b-md">
-	<h3 class="m-b-none">{{trans('app.report.score')}}</h3>
+	<h3 class="m-b-none">{{trans('app.report.score_by_team')}}</h3>
 	<h5 class="m-b-none">{{$contest->name}}</h5>
 </div>
 
 <section class="panel panel-default">
-	<header class="panel-heading">{{$subcategory->name}} {{trans('app.score.scores')}}</header>
-	@if (count($liveScores) > 0)
+	<header class="panel-heading">{{trans('app.team.team')}} : {{$team->name}}</header>
+	@if (count($liveRanks) > 0)
 	<div class="table-responsive">
 		<table class="table table-striped b-t b-light">
 			<thead>
 				<tr>
-					<th>{{trans('app.score.rank')}}</th>
 					<th>{{trans('app.contestant.tank_number')}}</th>
-					<th>{{trans('app.team.team')}}</th>
+					<th>{{trans('app.category.category')}}</th>
+					<th>{{trans('app.score.rank')}}</th>
 					<th>{{trans('app.score.grand_total')}}</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($liveScores as $index => $liveScore)
+				@foreach($liveRanks as $rank)
 				<tr>
-					<td>{{$index+1}}</td>
-					<td>{{$liveScore->tank_number}}</td>
-					<td>{{$liveScore->team->name}}</td>
-					<td><span class="font-bold">{{$liveScore->score}}</span></td>
+					<td>{{$rank->tank_number}}</td>
+					<td>{{$rank->subcategory->name}}</td>
+					<td>{{$rank->rank}}</td>
+					<td>{{$rank->score}}</td>
 				</tr>
 				@endforeach
 			</tbody>

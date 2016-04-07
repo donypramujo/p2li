@@ -9,6 +9,8 @@ use App\LiveScore;
 use App\Subcategory;
 use App\Score;
 use App\LiveTeamScore;
+use App\Team;
+use App\LiveRank;
 
 
 class ReportController extends Controller
@@ -34,6 +36,21 @@ class ReportController extends Controller
 		return view('report.print_score',compact(['liveScores','contest','subcategory']));
 	}
 	
+	public function filterScoreByTeam(Request $request){
+		$contests =	Contest::all();
+		$teams = Team::all();
+		return view('report.filter_score_by_team',compact(['contests','teams']));
+	}
+	
+	public function printScoreByTeam(Request $request){
+		$contest_id = $request->input('contest_id');
+		$team_id = $request->input('team_id');
+		$contest = Contest::findOrFail($contest_id);
+		$team = Team::findOrFail($team_id);
+		$liveRanks = LiveRank::where('contest_id',$contest_id)->where('team_id',$team_id)->get();
+		return view('report.print_score_by_team',compact(['liveRanks','contest','team']));
+	}
+	
 	public function filterScoreDetail(Request $request){
 		$contests =	Contest::all();
 		$categories = Category::all();
@@ -57,6 +74,31 @@ class ReportController extends Controller
 		});
 		
 		return view('report.print_score_detail',compact(['scores','contest','subcategory']));
+	}
+	
+	public function filterScoreDetailByTeam(Request $request){
+		$contests =	Contest::all();
+		$teams = Team::all();
+		return view('report.filter_score_detail_by_team',compact(['contests','teams']));
+	}
+	
+	public function printScoreDetailByTeam(Request $request){
+		$team_id = $request->input('team_id');
+		$contest_id = $request->input('contest_id');
+		$contest = Contest::findOrFail($contest_id);
+		$team = Team::findOrFail($team_id);
+	
+	
+		$scores = Score::whereHas('contestant',function($query) use($team,$contest){
+			$query->where('team_id',$team->id)->where('contest_id',$contest->id)->where('nomination',TRUE);
+		})->get();
+		 
+	
+		$scores = collect ( $scores )->sortBy ( function ($score) {
+			return $score->contestant->tank_number;
+		});
+	
+			return view('report.print_score_detail_by_team',compact(['scores','contest','team']));
 	}
 	
 	

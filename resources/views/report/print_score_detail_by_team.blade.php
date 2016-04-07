@@ -2,12 +2,12 @@
 @section('content')
 
 <div class="m-b-md">
-	<h3 class="m-b-none">{{trans('app.report.score_detail')}}</h3>
+	<h3 class="m-b-none">{{trans('app.report.score_detail_by_team')}}</h3>
 	<h5 class="m-b-none">{{$contest->name}}</h5>
 </div>
 
 <section class="panel panel-default">
-	<header class="panel-heading">{{$subcategory->name}} {{trans('app.score.scores')}} </header>
+	<header class="panel-heading">{{trans('app.team.team')}} : {{$team->name}}</header>
 	@if (count($scores) > 0)
 			<div class="table-responsive">
 				<table class="table table-striped b-t b-light">
