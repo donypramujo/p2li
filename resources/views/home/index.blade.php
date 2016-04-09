@@ -75,7 +75,9 @@
 							<tr>
 								<th>{{trans('app.score.rank')}}</th>
 								<th>{{trans('app.contestant.tank_number')}}</th>
+								@if( $contest->status->name == 'Completed')
 								<th>{{trans('app.team.team')}}</th>
+								@endif
 									<th>{{trans('app.image.image')}}</th>
 								<th>{{trans('app.score.grand_total')}}</th>
 							</tr>
@@ -86,7 +88,9 @@
 								
 								<td>{{$index+1}}</td>
 								<td>{{$liveScore->tank_number}}</td>
+									@if( $contest->status->name == 'Completed')
 								<td>{{$liveScore->team->name}}</td>
+								@endif
 									@if(is_null($liveScore->contestant->image))
 							<td>-</td>
 						@else

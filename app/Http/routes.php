@@ -148,6 +148,9 @@ Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
   		Route::get('print/score/by_team','ReportController@printScoreByTeam');
   		Route::get('filter/score_detail/by_team','ReportController@filterScoreDetailByTeam');
   		Route::get('print/score_detail/by_team','ReportController@printScoreDetailByTeam');
+  		
+  		Route::get('filter/team','ReportController@filterTeam');
+  		Route::get('print/team','ReportController@printTeam');
   	});
   	
   	

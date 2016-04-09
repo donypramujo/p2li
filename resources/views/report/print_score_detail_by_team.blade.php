@@ -62,6 +62,13 @@
 							</tr>
 							<?php $total+=$score->score_final; ?>
 						@endforeach
+						    @if($total != 0 )
+							    	<tr>
+							    		<td colspan="10" class="font-bold">&nbsp;</td>
+							    		<td colspan="2" class="font-bold">{{number_format($total, 2, ',', '.')}}</td>
+							    	</tr>
+							    	<?php $total=0;?>
+							    @endif
 					</tbody>
 				</table>
 			</div>

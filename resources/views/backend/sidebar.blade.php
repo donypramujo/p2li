@@ -109,6 +109,9 @@
 								<li>
 									<a href="{{action('ReportController@filterScoreDetailByTeam')}}"><i class="fa fa-newspaper-o"></i> <span>{{trans('app.report.score_detail_by_team')}}</span></a>
 								</li>
+								<li>
+									<a href="{{action('ReportController@filterTeam')}}"><i class="fa fa-newspaper-o"></i> <span>{{trans('app.report.team')}}</span></a>
+								</li>
 							</ul>
 						</li>
 						@endrole

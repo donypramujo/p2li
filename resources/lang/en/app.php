@@ -189,6 +189,7 @@ return [
 				'team_score' => 'Report Team Score',
 				'score_by_team' => 'Report Score By Team',
 				'score_detail_by_team' => 'Report Score Detail By Team',
+				'team' => 'Report Team'
 		],
 		'image' => [
 				'upload' => 'Upload Image',
