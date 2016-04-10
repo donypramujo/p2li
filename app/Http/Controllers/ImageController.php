@@ -84,7 +84,11 @@ class ImageController extends Controller
     	
     	$contestant = Contestant::findOrFail($id);
     	
-    	$ext = end((explode(".", $request->file('image')->getClientOriginalName())));
+    	
+    	$file_name = $request->file('image')->getClientOriginalName();
+    	
+    	$tmp = explode('.', $file_name);
+    	$ext = end($tmp);
     	
     	
     	$pathname = $request->file('image')->getPathname();

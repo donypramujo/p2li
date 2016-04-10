@@ -184,12 +184,6 @@ class ScoreController extends Controller
 			}
 			
 			$penalty = $score->rate_penalty;
-			
-			$score_penalty = ($penalty/doubleval(100)) * (($rate_penalty*$max_score)/doubleval(100));
-			
-			$score->fill([
-					'score_penalty' => $score_penalty
-			]);
 			$score_final = collect([
 					$score->score_overall_impression,
 					$score->score_head,
@@ -199,8 +193,14 @@ class ScoreController extends Controller
 					$score->score_pearl,
 					$score->score_color,
 					$score->score_finnage,
+						
+			])->sum();
+			$score_penalty = ($penalty/doubleval(100)) * (($rate_penalty*$score_final)/doubleval(100));
 			
-			])->sum() - $score->score_penalty;
+			$score->fill([
+					'score_penalty' => $score_penalty
+			]);
+			$score_final = $score_final - $score->score_penalty;
 
 			$score->score_final = $score_final;
 			if(!$score->valid){
@@ -231,12 +231,6 @@ class ScoreController extends Controller
 			
 			$penalty = doubleval($request->input('value'));
 			
-			$score_penalty = ($penalty/doubleval(100)) * (($rate_penalty*$max_score)/doubleval(100));
-			
-			$score->fill([
-					'rate_penalty'=> $penalty,
-					'score_penalty' => $score_penalty
-			]);
 			$score_final = collect([
 					$score->score_overall_impression,
 					$score->score_head,
@@ -246,8 +240,16 @@ class ScoreController extends Controller
 					$score->score_pearl,
 					$score->score_color,
 					$score->score_finnage,
+						
+			])->sum();
 			
-			])->sum() - $score->score_penalty;
+			$score_penalty = ($penalty/doubleval(100)) * (($rate_penalty*$score_final)/doubleval(100));
+			
+			$score->fill([
+					'rate_penalty'=> $penalty,
+					'score_penalty' => $score_penalty
+			]);
+			$score_final = $score_final - $score->score_penalty;
 
 			$score->score_final = $score_final;
 			if(!$score->valid){
@@ -267,11 +269,12 @@ class ScoreController extends Controller
 		
 		$score_name ='score_'.$request->input('name');
 		
+		
 		$score->fill([
 				$name => $value,
 				$score_name => $score_value
 		]);
-    	
+		
 		$score_final = collect([
 				$score->score_overall_impression,
 				$score->score_head,
@@ -282,14 +285,30 @@ class ScoreController extends Controller
 				$score->score_color,
 				$score->score_finnage,
 		
-		])->sum() - $score->score_penalty;
+		])->sum();
+			
+		$rate_penalty = 0;
+		if($score->penalty_type == 'minor'){
+			$rate_penalty = doubleval($this->configs->get('rate_penalty_minor'));
+		}else if($score->penalty_type == 'major'){
+			$rate_penalty = doubleval($this->configs->get('rate_penalty_major'));
+		}
+		
+		$penalty = $score->rate_penalty;
+		
+		
+		$score_penalty = ($penalty/doubleval(100)) * (($rate_penalty*$score_final)/doubleval(100));
+    	
+		$score_final = $score_final - $score_penalty;
 		
 		$score->score_final = $score_final;
+		$score->score_penalty = $score_penalty;
 		
 		
 		if(!$score->valid){
 			$score->save();
 		}
+		
         
     }
 
