@@ -18,6 +18,6 @@ return array(
     'driver' => 'gd',
 	
 	'contestant_path' => 'public/images/contestant/',
-	'contestant_resize_path' => 'public/images/contestant/resize/'
+	'contestant_small_path' => 'public/images/contestant/small/'
 
 );

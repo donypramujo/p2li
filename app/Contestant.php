@@ -36,8 +36,15 @@ class Contestant extends Model
 	
 	
 	public function image(){
-		
-		return $this->belongsTo('App\Image');
+		return $this->belongsTo('App\File','image_id');
+	}
+	
+	public function small_image(){
+		return $this->belongsTo('App\File','small_image_id');
+	}
+	
+	public function title(){
+		return $this->belongsTo('App\Title');
 	}
 	
 }

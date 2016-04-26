@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Intervention\Image\Facades\Image;
 use App\Repositories\ContestRepository;
 use App\Contestant;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -66,6 +67,29 @@ class ImageController extends Controller
     public function create()
     {
         //
+        
+//     	$contestants = 	Contestant::has('image')->where('small_image_id',NULL)->get();
+    	
+//     	foreach($contestants as $contestant  ){
+    	
+//     	$image =  \App\File::find($contestant->image->id);
+    	
+    	
+    	
+//     	$small_image =new \App\File();
+    	
+//     	$small_image->path = 'public/images/contestant/small/';
+//     	$small_image->file_name = $image->file_name;
+//     	$small_image->mime_type = $image->mime_type;
+    	
+//     	$small_image->save();
+    	
+    	
+//     	$contestant->small_image()->associate($small_image);
+//     	$contestant->save();
+//     	}
+    	
+    	
     }
 
     /**
@@ -84,6 +108,32 @@ class ImageController extends Controller
     	
     	$contestant = Contestant::findOrFail($id);
     	
+    	if(!is_null($contestant->image)){
+    		$image_file_id = $contestant->image->id;
+    		
+    		$contestant->image()->dissociate();
+    		$contestant->save();
+    		
+    		$image_file = \App\File::find($image_file_id);
+
+    		unlink($image_file->full_path);
+    		
+    		$image_file->delete();
+    	}
+    	
+    	if(!is_null($contestant->small_image)){
+    		$image_file_id = $contestant->small_image->id;
+    	
+    		$contestant->small_image()->dissociate();
+    		$contestant->save();
+    	
+    		$image_file = \App\File::find($image_file_id);
+    		
+    		unlink($image_file->full_path);
+    		
+    		$image_file->delete();
+    	}
+    	
     	
     	$file_name = $request->file('image')->getClientOriginalName();
     	
@@ -97,22 +147,26 @@ class ImageController extends Controller
     
     	
     	$image->save(config('image.contestant_path').$id.'.'.$ext);
-    	$image->resize(160,120)->save(config('image.contestant_resize_path').$id.'.'.$ext);
+    	$image->resize(160,120)->save(config('image.contestant_small_path').$id.'.'.$ext);
     	
     	
+    	$image_file = new \App\File();
+    	$image_file->path = config('image.contestant_path');
+    	$image_file->mime_type = $request->file('image')->getMimeType();
+    	$image_file->file_name = $id.'.'.$ext;
     	
-    	$img =\App\Image::where('file_name',$id.'.'.$ext)->first();
+    	$image_file->save();
     	
-    	if(empty($img)){
-    		$img = new \App\Image();
-    	}
-    	$img->path = config('image.contestant_path');
-    	$img->mime_type = $request->file('image')->getMimeType();
-    	$img->file_name = $id.'.'.$ext;
+    	$small_image_file = new \App\File();
+    	$small_image_file->path = config('image.contestant_small_path');
+    	$small_image_file->mime_type = $image_file->mime_type;
+    	$small_image_file->file_name = $image_file->file_name;
     	
-    	$img->save();
+    	$small_image_file->save();
     	
-    	$contestant->image()->associate($img);
+    	$contestant->image()->associate($image_file);
+    	$contestant->small_image()->associate($small_image_file);
+    	
     	
     	$contestant->save();
     	

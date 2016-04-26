@@ -23,11 +23,14 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+
+Route::group(['middleware' => ['track']], function () {
 	Route::get('/' ,'HomeController@index');
 	Route::get('/show/{contestant}','HomeController@show');
 	Route::get('/live/team/scores','HomeController@showLiveTeamScores');
+});
 
-Route::group(['middleware' => ['web'],'prefix' => 'backend'], function () {
+Route::group(['middleware' => ['web','track'],'prefix' => 'backend'], function () {
    Route::auth();
 
    Route::get('/', 'BackendController@index');

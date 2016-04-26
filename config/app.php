@@ -159,7 +159,9 @@ return [
     	//plugins
     	Zizaco\Entrust\EntrustServiceProvider::class,
     	OwenIt\Auditing\AuditingServiceProvider::class,
-    	Intervention\Image\ImageServiceProvider::class
+    	Intervention\Image\ImageServiceProvider::class,
+    		
+    	Kenarkose\Tracker\TrackerServiceProvider::class,
     ],
 
     /*
@@ -208,7 +210,8 @@ return [
     		
     	//plugins	
     	'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-    	'Image' => Intervention\Image\Facades\Image::class
+    	'Image' => Intervention\Image\Facades\Image::class,
+    	'Tracker'   => Kenarkose\Tracker\TrackerFacade::class
 
     ],
 

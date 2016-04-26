@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\AuditingTrait;
 
-class Image extends Model
+class File extends Model
 {
 	use AuditingTrait;
 	// Disables the log record in this model.
@@ -18,5 +18,11 @@ class Image extends Model
 	protected $auditableTypes = ['created', 'saved', 'deleted'];
 	
 	protected $dates = ['start_date','end_date'];
+	
+	
+	public function getFullPathAttribute($value)
+	{
+		return $this->attributes['path'].''.$this->attributes['file_name'];
+	}
 	
 }

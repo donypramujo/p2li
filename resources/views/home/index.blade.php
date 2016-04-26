@@ -18,6 +18,16 @@
 	</div>
 </div>
 
+<div>
+	<div class="container m-t-xl">
+		<div class="row">
+	@include('home.carousel')
+	</div>
+	</div>
+</div>
+
+
+<div>
 <div class="container m-t-xl">
 	<div class="row">
 		<div class="col-sm-12">
@@ -94,7 +104,7 @@
 									@if(is_null($liveScore->contestant->image))
 							<td>-</td>
 						@else
-							<td><a data-remote="{{url($liveScore->contestant->image->path.$liveScore->contestant->image->file_name)}}" data-toggle="lightbox"><img src="{{url($liveScore->contestant->image->path.'resize/'.$liveScore->contestant->image->file_name)}}" alt="{{trans('app.image.no_image')}}" width="80"  height="60"></a></td>
+							<td><a href="#" data-remote="{{url($liveScore->contestant->image->full_path)}}" data-toggle="lightbox"><img class="img-responsive" src="{{url($liveScore->contestant->small_image->full_path)}}" alt="{{trans('app.image.no_image')}}" width="80"  height="60"></a></td>
 						@endif
 								<td><a href="{{action('HomeController@show',$liveScore->id)}}" class="text-info">{{$liveScore->score}}</a></td>
 							</tr>
@@ -108,7 +118,7 @@
 		@endif
 	</div>
 </div>
-
+</div>
 
 @endsection
 

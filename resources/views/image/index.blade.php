@@ -63,7 +63,7 @@
 						@if(is_null($contestant->image))
 							<td>-</td>
 						@else
-							<td><a data-remote="{{url($contestant->image->path.$contestant->image->file_name)}}" data-toggle="lightbox"><img src="{{url($contestant->image->path.'resize/'.$contestant->image->file_name)}}" alt="{{trans('app.image.no_image')}}" width="80"  height="60"></a></td>
+							<td><a href="#" data-remote="{{url($contestant->image->full_path)}}" data-toggle="lightbox"><img src="{{url($contestant->small_image->full_path)}}" alt="{{trans('app.image.no_image')}}" width="80"  height="60"></a></td>
 						@endif
 						<td>{{$contestant->tank_number}}</td>
 						<td>{{$contestant->subcategory->name}}</td>

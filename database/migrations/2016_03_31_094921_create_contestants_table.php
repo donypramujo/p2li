@@ -25,11 +25,18 @@ class CreateContestantsTable extends Migration
             $table->integer('tank_number')->unsigned();
             $table->string('owner',50)->nullable;
             $table->boolean('nomination');
-            $table->foreign('image_id')->references('id')->on('images')
+            
+            $table->foreign('image_id')->references('id')->on('files')
             		->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign('small_image_id')->references('id')->on('files')
+            		->onUpdate('restrict')->onDelete('restrict');
+            		
+            		
             $table->foreign('team_id')->references('id')->on('teams')
             		->onUpdate('restrict')->onDelete('restrict');
             
+            		
+            		
             $table->unique(['contest_id','tank_number']);
             $table->timestamps();
         });
