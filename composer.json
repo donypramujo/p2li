@@ -10,7 +10,7 @@
         "zizaco/entrust": "5.2.x-dev",
         "owen-it/laravel-auditing": "2.2.1",
         "intervention/image": "^2.3",
-        "kenarkose/tracker": "~1.0"
+      "kenarkose/tracker": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

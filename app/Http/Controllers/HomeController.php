@@ -11,6 +11,7 @@ use App\Subcategory;
 use App\Score;
 use App\Contestant;
 use App\LiveTeamScore;
+use Kenarkose\Tracker\SiteView;
 
 class HomeController extends Controller
 {
@@ -44,10 +45,12 @@ class HomeController extends Controller
 			
 		}
 		
+		$contestants = Contestant::has('title')->where('contest_id',$contest->id)->orderBy('title_id')->get();
+		
+		$visitor = SiteView::all()->count();
 		
 		
-		
-		return view('home.index',compact(['liveScores','contest','select_subcategories','subcategory']));
+		return view('home.index',compact(['liveScores','contest','select_subcategories','subcategory','contestants','visitor']));
 	}
 	
 	public function show(Contestant $contestant){

@@ -8,21 +8,18 @@
 
   <!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
-		<div class="item active">
-			<img alt="" class="img-responsive center-block img-thumbnail" src="{{url('public/title/GC.jpg')}}">
+		<?php $flag = TRUE;?>
+		@foreach($contestants as $contestant)
+		<div class="item {{$flag ? 'active': ''}}">
+			<img alt="" class="img-responsive center-block img-thumbnail" src="{{url($contestant->image->full_path)}}">
 			<div class="carousel-caption">
+				<h3>{{$contestant->title->name}}</h3>
+				<h4>{{$contestant->team->name}}</h4>
+				<h6>{{$contestant->contest->name}}</h6>
 			</div>
 		</div>
-		<div class="item">
-			<img alt="" class="img-responsive center-block img-thumbnail" src="{{url('public/title/YC.jpg')}}">
-			<div class="carousel-caption">
-			</div>
-		</div>
-		<div class="item">
-			<img alt="" class="img-responsive center-block img-thumbnail" src="{{url('public/title/BC.jpg')}}">
-			<div class="carousel-caption">
-			</div>
-		</div>
+		<?php $flag = FALSE;?>
+		@endforeach
 	</div>
 
 	<!-- Controls -->

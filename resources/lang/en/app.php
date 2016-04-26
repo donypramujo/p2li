@@ -195,6 +195,13 @@ return [
 				'upload' => 'Upload Image',
 				'image' => 'Image',
 				'no_image' => 'No Image'
+		],
+		'title' => [
+				'manage' => 'Manage Title',
+				'title' => 'Title',
+				'1st_only' => '1st Rank Only',
+				'cant_add_title' => 'Cant add title because score not complete',
+				'title_exists' =>'Title :name Already Exists.'
 		]
 ];
  

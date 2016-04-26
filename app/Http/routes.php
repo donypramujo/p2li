@@ -24,7 +24,7 @@
 |
 */
 
-Route::group(['middleware' => ['track']], function () {
+Route::group(['middleware' => ['web','track']], function () {
 	Route::get('/' ,'HomeController@index');
 	Route::get('/show/{contestant}','HomeController@show');
 	Route::get('/live/team/scores','HomeController@showLiveTeamScores');
@@ -154,6 +154,12 @@ Route::group(['middleware' => ['web','track'],'prefix' => 'backend'], function (
   		
   		Route::get('filter/team','ReportController@filterTeam');
   		Route::get('print/team','ReportController@printTeam');
+  	});
+  	
+  	Route::group(['middleware'=>['role:admin|sa'],'prefix' => 'title'], function () {
+  		Route::get('/',['as' =>'title.index','uses' => 'TitleController@index']);
+  		Route::post('store',['as' =>'title.store' ,'uses' => 'TitleController@store']);
+  		Route::delete('{contestant}',['as' =>'title.destroy' ,'uses' => 'TitleController@destroy']);
   	});
   	
   	

@@ -22,4 +22,8 @@ class LiveRank extends Model
 	public function contest(){
 		return $this->belongsTo('App\Contest');
 	}
+	
+	public function title(){
+		return $this->belongsTo('App\Title');
+	}
 }

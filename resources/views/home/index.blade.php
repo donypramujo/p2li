@@ -18,6 +18,8 @@
 	</div>
 </div>
 
+
+@if(count($contestants)>0)
 <div>
 	<div class="container m-t-xl">
 		<div class="row">
@@ -25,7 +27,7 @@
 	</div>
 	</div>
 </div>
-
+@endif
 
 <div>
 <div class="container m-t-xl">
@@ -119,6 +121,16 @@
 	</div>
 </div>
 </div>
+
+<footer id="footer">
+    <div class="bg-dark lt text-center">
+      <div class="container wrapper">
+    <div class="m-b-lg m-t-lg">
+        Visitor Count : {{$visitor}}
+        </div>
+      </div>
+    </div>
+  </footer>
 
 @endsection
 

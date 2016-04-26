@@ -132,6 +132,8 @@ return [
     		'subcategory_id' => 'Category',
     		'tank_number' => 'Tank Number',
     		'team_id' => 'Team',
+    		'contestant_id' => 'Contestant',
+    		'title_id' =>'Title'
     		
     ],
 

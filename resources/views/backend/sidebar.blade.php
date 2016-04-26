@@ -71,6 +71,11 @@
 										<a href="{{action('ImageController@index')}}"><i class="fa fa-file-image-o"></i> <span>{{trans('app.image.upload')}}</span></a>
 									</li>
 								@endrole
+								@role(['admin','sa'])
+									<li>
+										<a href="{{action('TitleController@index')}}"><i class="fa fa-trophy"></i> <span>{{trans('app.title.manage')}}</span></a>
+									</li>
+								@endrole
 							</ul>
 						</li>
 						@endpermission
