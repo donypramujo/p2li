@@ -7,7 +7,7 @@ CREATE TABLE `breeders` (
 	UNIQUE INDEX `breeders_name_unique` (`name`)
 );
 	
- 
+ teaaaa
 ALTER TABLE `contestants`
 	ADD COLUMN `breeder_id` INT UNSIGNED NULL AFTER `updated_at`,
 	ADD INDEX `contestants_breeder_id_foreign` (`breeder_id`),
