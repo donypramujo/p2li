@@ -19,7 +19,7 @@
 </div>
 
 
-@if(count($contestants)>0)
+
 <div>
 	<div class="container m-t-xl">
 		<div class="row">
@@ -27,7 +27,6 @@
 	</div>
 	</div>
 </div>
-@endif
 
 <div>
 <div class="container m-t-xl">

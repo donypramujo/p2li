@@ -15,6 +15,9 @@
           <li>
             <a href="{{action('HomeController@showLiveTeamScores')}}">{{trans('app.live_score.team')}}</a>
           </li>
+          <li>
+            <a href="{{action('HomeController@showLiveBreederScores')}}">{{trans('app.live_score.breeder')}}</a>
+          </li>
         </ul>
       </div>
     </div>

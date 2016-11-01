@@ -11,6 +11,7 @@ use App\Team;
 use App\Contest;
 use App\Contestant;
 use App\Repositories\ContestRepository;
+use App\Breeder;
 
 class ContestantController extends Controller
 {
@@ -35,6 +36,7 @@ class ContestantController extends Controller
     	};
     	$categories = Category::orderBy('id','asc')->with('subcategories')->get();
     	$teams = Team::all();
+    	$breeders= Breeder::all();
     	
     	
     	$contestants = NULL;
@@ -61,7 +63,7 @@ class ContestantController extends Controller
     		$contestants->appends($request->except('page'));
     	}
     	
-    	return view('contestant.index',compact(['categories','teams','contestants','search_field','search_value','contest']));
+    	return view('contestant.index',compact(['categories','teams','contestants','search_field','search_value','contest','breeders']));
     }
     
     
@@ -105,12 +107,17 @@ class ContestantController extends Controller
     	
     	$team = Team::findOrFail($request->input('team_id'));
     	
+    	
     	$contestant->subcategory()->associate($subcategory);
     	$contestant->team()->associate($team);
     	$contestant->contest()->associate($contest);
     	
     	$contestant->tank_number = $request->input('tank_number');
     	$contestant->owner = $request->input('owner');
+    	if($request->input('breeder_id') != '') {
+    		$breeder = Breeder::findOrFail($request->input('breeder_id'));
+    		$contestant->breeder()->associate($breeder);
+    	}
     	$contestant->save();
     	
     	return redirect()->action('ContestantController@index')->withInput([
@@ -140,9 +147,10 @@ class ContestantController extends Controller
     {
     	$categories = Category::orderBy('id','asc')->with('subcategories')->get();
     	$teams = Team::all();
+    	$breeders= Breeder::all();
     	$contest = $this->contests->getCurrent();
     	 
-    	return view('contestant.edit',compact(['categories','teams','contestant','contest']));
+    	return view('contestant.edit',compact(['categories','teams','contestant','contest','breeders']));
     }
 
     /**
@@ -177,6 +185,11 @@ class ContestantController extends Controller
     	 
     	$contestant->tank_number = $request->input('tank_number');
     	$contestant->owner = $request->input('owner');
+    	
+    	if($request->input('breeder_id') != '') {
+    		$breeder = Breeder::findOrFail($request->input('breeder_id'));
+    		$contestant->breeder()->associate($breeder);
+    	}
     	$contestant->update();
     	 
     	return redirect()->action('ContestantController@index')->withInput([

@@ -28,6 +28,7 @@ Route::group(['middleware' => ['web','track']], function () {
 	Route::get('/' ,'HomeController@index');
 	Route::get('/show/{contestant}','HomeController@show');
 	Route::get('/live/team/scores','HomeController@showLiveTeamScores');
+	Route::get('/live/breeder/scores','HomeController@showLiveBreederScores');
 });
 
 Route::group(['middleware' => ['web','track'],'prefix' => 'backend'], function () {
@@ -44,6 +45,16 @@ Route::group(['middleware' => ['web','track'],'prefix' => 'backend'], function (
     	Route::put('{team}',['as' =>'team.update','middleware'=>['permission:team.update'] ,'uses' => 'TeamController@update']);
     	Route::delete('{team}',['as' =>'team.destroy','middleware'=>['permission:team.destroy'] ,'uses' => 'TeamController@destroy']);
    });
+   
+   	Route::group(['prefix' => 'breeder'], function () {
+   		Route::get('/',['as' =>'breeder.index','middleware'=>['permission:team.index'] ,'uses' => 'BreederController@index']);
+   		Route::get('create',['as' =>'breeder.create','middleware'=>['permission:team.create'] ,'uses' => 'BreederController@create']);
+   		Route::post('store',['as' =>'breeder.store','middleware'=>['permission:team.store'] ,'uses' => 'BreederController@store']);
+   		Route::get('{breeder}',['as' =>'breeder.show','middleware'=>['permission:team.show'] ,'uses' => 'BreederController@show']);
+   		Route::get('{breeder}/edit',['as' =>'breeder.edit','middleware'=>['permission:team.edit'] ,'uses' => 'BreederController@edit']);
+   		Route::put('{breeder}',['as' =>'breeder.update','middleware'=>['permission:team.update'] ,'uses' => 'BreederController@update']);
+   		Route::delete('{breeder}',['as' =>'breeder.destroy','middleware'=>['permission:team.destroy'] ,'uses' => 'BreederController@destroy']);
+   	});
    
    	Route::group(['prefix' => 'user'], function () {
    		Route::get('/',['as' =>'user.index','middleware'=>['permission:user.index'] ,'uses' => 'UserController@index']);
@@ -154,6 +165,10 @@ Route::group(['middleware' => ['web','track'],'prefix' => 'backend'], function (
   		
   		Route::get('filter/team','ReportController@filterTeam');
   		Route::get('print/team','ReportController@printTeam');
+  		
+
+  		Route::get('filter/cat','ReportController@filterCategory');
+  		Route::get('print/cat','ReportController@printCategory');
   	});
   	
   	Route::group(['middleware'=>['role:admin|sa'],'prefix' => 'title'], function () {

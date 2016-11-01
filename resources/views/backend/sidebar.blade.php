@@ -37,6 +37,11 @@
 										<a href="{{action('TeamController@index')}}"><i class="fa fa-users"></i> <span>{{trans('app.team.manage')}}</span></a>
 									</li>
 								@endpermission
+								@permission('team.index')
+									<li>
+										<a href="{{action('BreederController@index')}}"><i class="fa fa-users"></i> <span>{{trans('app.breeder.manage')}}</span></a>
+									</li>
+								@endpermission
 							</ul>
 						</li>
 						@endpermission
@@ -116,6 +121,9 @@
 								</li>
 								<li>
 									<a href="{{action('ReportController@filterTeam')}}"><i class="fa fa-newspaper-o"></i> <span>{{trans('app.report.team')}}</span></a>
+								</li>
+								<li>
+									<a href="{{action('ReportController@filterCategory')}}"><i class="fa fa-newspaper-o"></i> <span>Report Contestant per Category</span></a>
 								</li>
 							</ul>
 						</li>

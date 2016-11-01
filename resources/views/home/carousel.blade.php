@@ -8,9 +8,15 @@
 
   <!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
+<div class="item active">
+			<img alt="" class="img-responsive center-block img-thumbnail" src="{{url('public/banner/BrosurLiga.jpg')}}">
+			<div class="carousel-caption">
+				
+			</div>
+		</div>
 		<?php $flag = TRUE;?>
 		@foreach($contestants as $contestant)
-		<div class="item {{$flag ? 'active': ''}}">
+		<div class="item {{$flag ? '': ''}}">
 			<img alt="" class="img-responsive center-block img-thumbnail" src="{{url($contestant->image->full_path)}}">
 			<div class="carousel-caption">
 				<h3>{{$contestant->title->name}}</h3>

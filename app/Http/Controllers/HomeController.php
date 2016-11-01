@@ -12,6 +12,7 @@ use App\Score;
 use App\Contestant;
 use App\LiveTeamScore;
 use Kenarkose\Tracker\SiteView;
+use App\LiveBreederScore;
 
 class HomeController extends Controller
 {
@@ -47,14 +48,14 @@ class HomeController extends Controller
 		
 		$contestants = Contestant::has('title')->where('contest_id',$contest->id)->orderBy('title_id')->get();
 		
-		$visitor = SiteView::all()->count();
+		$visitor = SiteView::all()->count() + 36128;
 		
 		
 		return view('home.index',compact(['liveScores','contest','select_subcategories','subcategory','contestants','visitor']));
 	}
 	
 	public function show(Contestant $contestant){
-		$scores = Score::where('contestant_id',$contestant->id)->get();
+		$scores = Score::where('contestant_id',$contestant->id)->where('valid',TRUE)->get();
 		
 		return view('home.show',compact(['scores','contestant']));
 	}
@@ -63,9 +64,19 @@ class HomeController extends Controller
 		$contest_id = $this->configs->get('contest');
 		$contest = Contest::findOrFail($contest_id);
 		
-		$scores = LiveTeamScore::where('contest_id',$contest_id)->get();
+		$scores = LiveTeamScore::where('contest_id',$contest_id)->take(10)->get();
 		
 		return view('home.live_team_scores',compact(['scores','contest']));
 		
+	}
+	
+	public function showLiveBreederScores(){
+		$contest_id = $this->configs->get('contest');
+		$contest = Contest::findOrFail($contest_id);
+	
+		$scores = LiveBreederScore::where('contest_id',$contest_id)->take(10)->get();
+	
+		return view('home.live_breeder_scores',compact(['scores','contest']));
+	
 	}
 }

@@ -2,35 +2,42 @@
 @section('content')
 
 <div class="m-b-md">
-	<h3 class="m-b-none">{{trans('app.report.team')}}</h3>
+	<h3 class="m-b-none">Report Contestant per Category</h3>
 	<h5 class="m-b-none">{{$contest->name}}, {{$contest->start_date->format('d M Y')}} <b>{{trans('app.to')}}</b> {{$contest->end_date->format('d M Y')}}</h5>
 </div>
-@foreach($rows as  $key => $value)
+
 <section class="panel panel-default">
-	<header class="panel-heading">	<h2>{{$key}}</h2><h5>Total {{count($value)}}</h5></header>
+	<header class="panel-heading">Report Contestant per Category</header>
+
+
 	<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>No.</th>
 					<th>{{trans('app.category.category')}}</th>
-					<th>{{trans('app.contestant.tank_number')}}</th>
-					<th>{{trans('app.contestant.owner')}}</th>
+					<th>Total</th>
+					<th>Tank No.</th>
 				</tr>
 			</thead>
 			<tbody>
-			@foreach($value as $index => $contestant)
+			<?php $total=0;?>
+			@foreach($categories as $category)
 				<tr>
-					<td>{{$index+1}}</td>
-					<td>{{$contestant->subcategory->name}}</td>
-					<td>{{$contestant->tank_number}}</td>
-					<td>{{$contestant->owner}}</td>						
+					<td>{{$category->subcategory->name}}</td>
+					<td>{{$category->count_tank_number}}</td>
+					<td>{{$category->list_tank_number}}</td>
 				</tr>
+				<?php $total+=$category->count_tank_number?>
 			@endforeach
+			
+				<tr>
+					<td><h4>Total</h4></td>
+					<td colspan="2"><h4>{{$total}}</h4></td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
+
 </section>
-@endforeach
 
 @endsection

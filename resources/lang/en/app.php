@@ -46,6 +46,16 @@ return [
 				'edit' => 'Edit Team' ,
 				'team_name' => 'Team Name'
 		],
+		'breeder' => [
+				'breeder' => 'Breeder',
+				'breeders' => 'Breeders',
+				'id' => 'ID',
+				'name' => 'Name',
+				'create' => 'Create Breeder',
+				'manage' => 'Manage Breeder',
+				'edit' => 'Edit Breeder' ,
+				'breeder_name' => 'Breeder Name'
+		],
 		'user' => [
 				'user' => 'User',
 				'users' => 'Users',
@@ -180,7 +190,8 @@ return [
 		],
 		'live_score' => [
 				's' => 'Live Scores',
-				'team' => 'Live Team Scores'
+				'team' => 'Live Team Scores',
+				'breeder' => 'Live Breeder Scores'
 		],
 		'report' => [
 				'report' => 'Report',

@@ -63,6 +63,21 @@
 				</div>
 			</div>
 			
+			<div class="form-group {{$errors->has('breeder_id') ? 'has-error' : '' }}">
+				<label class="col-sm-2 control-label font-bold">{{trans('app.breeder.breeder')}}</label>
+				<div class="col-sm-10">
+					<select name="breeder_id" class="select2-option" style="width: 100%;">
+						<option value="">&nbsp;</option>
+							@foreach ($breeders as $breeder)
+								<option value="{{$breeder->id}}" {{(old("breeder_id") == $breeder->id ? "selected":"") }}>{{$breeder->name}}</option>
+							@endforeach
+					</select>
+					@foreach($errors->get('breeder_id') as $error)
+						<span class="help-block m-b-none text-danger">{{$error}}</span>
+					@endforeach
+				</div>
+			</div>
+			
 			<div class="form-group {{$errors->has('tank_number') ? 'has-error' : '' }}">
 				<label class="col-sm-2 control-label font-bold">{{trans('app.contestant.tank_number')}}</label>
 				<div class="col-sm-10">

@@ -11,6 +11,8 @@ use App\Score;
 use App\LiveTeamScore;
 use App\Team;
 use App\LiveRank;
+use App\Contestant;
+use App\CategoryTank;
 
 
 class ReportController extends Controller
@@ -113,4 +115,70 @@ class ReportController extends Controller
 		$scores = LiveTeamScore::where('contest_id',$contest_id)->get();
 		return view('report.print_team_score',compact(['scores','contest']));
 	}
+	
+
+	public function filterTeam(Request $request){
+		$contests =	Contest::all();
+		$teams = Team::all();
+		return view('report.filter_team',compact(['contests','teams']));
+		
+	}
+	
+
+	public function printTeam(Request $request){
+		$contests =	Contest::all();
+		$teams = Team::all();
+		
+		$contest_id = $request->input('contest_id');
+		$team_id = $request->input('team_id');
+		
+
+		$contest = Contest::findOrFail($contest_id);
+		
+		$contestants = [];
+		
+		if(empty($team_id )){
+			$contestants = Contestant::where('contest_id',$contest_id)->orderBy('team_id','asc')->orderBy('subcategory_id','asc')->get();
+		}else{
+			$contestants = Contestant::where('contest_id',$contest_id)->where('team_id',$team_id)->orderBy('subcategory_id','asc')->get();
+		}
+		
+		
+		$rows = [];
+		
+		foreach ($contestants as $contestant){
+			$rows[$contestant->team->name][]=$contestant;			
+		}
+		
+		
+		return view('report.print_team',compact(['contestants','contest','rows']));
+	}
+	
+	
+	public function filterCategory(Request $request){
+		$contests =	Contest::all();
+		return view('report.filter_category',compact(['contests']));
+	
+	}
+	
+	
+	public function printCategory(Request $request){
+		$contests =	Contest::all();
+		$teams = Team::all();
+	
+		$contest_id = $request->input('contest_id');
+	
+	
+		$contest = Contest::findOrFail($contest_id);
+
+		
+		$categories = CategoryTank::where('contest_id',$contest_id)->get();
+	
+	//dd($categories);
+	
+		return view('report.print_category',compact(['categories','contest']));
+	}
+	
+	
+	
 }

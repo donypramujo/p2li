@@ -34,6 +34,10 @@ class Contestant extends Model
 		return $this->belongsTo('App\Team');
 	}
 	
+	public function breeder(){
+		return $this->belongsTo('App\Breeder');
+	}
+	
 	
 	public function image(){
 		return $this->belongsTo('App\File','image_id');
